@@ -16,6 +16,7 @@
                 <ResourceDictionary Source="Theming/FieldsStyles.xaml" />
                 <ResourceDictionary Source="Theming/GroupBoxesStyles.xaml" />
                 <ResourceDictionary Source="Theming/ListsStyles.xaml" />
+                <ResourceDictionary Source="Theming/MenusAndToolBarsStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

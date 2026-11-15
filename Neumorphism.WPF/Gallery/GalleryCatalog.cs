@@ -42,6 +42,7 @@ internal static class GalleryCatalog
         "Fields" => new FieldsPage(),
         "Group Boxes" => new GroupBoxesPage(),
         "Lists" => new ListsPage(),
+        "Menus & Tool Bars" => new MenusAndToolBarsPage(),
         _ => null
     };
 }

@@ -1,0 +1,41 @@
+<UserControl x:Class="Neumorphism.WPF.Gallery.MenusAndToolBarsPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:theme="clr-namespace:Neumorphism.WPF.Theming"
+             xmlns:gallery="clr-namespace:Neumorphism.WPF.Gallery">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <StackPanel Margin="2,12,14,24">
+            <TextBlock Text="Command menu" Style="{StaticResource GallerySection}" />
+            <Menu Style="{StaticResource Neumorphism.Menu}">
+                <Menu.Resources>
+                    <Style TargetType="MenuItem" BasedOn="{StaticResource Neumorphism.MenuItem}" />
+                </Menu.Resources>
+                <MenuItem Header="_Project">
+                    <MenuItem Header="_New" Click="Menu_Click" />
+                    <MenuItem Header="_Export">
+                        <MenuItem Header="_PDF" Click="Menu_Click" />
+                        <MenuItem Header="_Text" Click="Menu_Click" />
+                    </MenuItem>
+                    <MenuItem Header="Archive" IsEnabled="False" />
+                </MenuItem>
+                <MenuItem Header="_View">
+                    <MenuItem Header="_Details" Click="Menu_Click" />
+                    <MenuItem Header="_Summary" Click="Menu_Click" />
+                </MenuItem>
+            </Menu>
+            <Border Style="{StaticResource GalleryDivider}">
+                <StackPanel>
+                    <TextBlock Text="Toolbar with overflow" Style="{StaticResource GallerySection}" />
+                    <ToolBar x:Name="Tools" Style="{StaticResource Neumorphism.ToolBar}" AutomationProperties.Name="Document commands">
+                        <Button Content="New" Style="{StaticResource Neumorphism.OutlineButton}" Margin="0,0,8,0" Click="Tool_Click" />
+                        <Button Content="Save" Style="{StaticResource Neumorphism.OutlineButton}" Margin="0,0,8,0" Click="Tool_Click" />
+                        <Button Content="Preview" Style="{StaticResource Neumorphism.TextButton}" Click="Tool_Click" />
+                        <Button Content="Export" ToolBar.OverflowMode="Always" Style="{StaticResource Neumorphism.TextButton}" Click="Tool_Click" />
+                    </ToolBar>
+                    <TextBlock x:Name="Feedback" Text="Choose a command to try it." Margin="0,12,0,0"
+                               Style="{StaticResource SupportingText}" AutomationProperties.LiveSetting="Polite" />
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
