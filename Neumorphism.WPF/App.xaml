@@ -20,6 +20,7 @@
                 <ResourceDictionary Source="Theming/NavigationBarsStyles.xaml" />
                 <ResourceDictionary Source="Theming/NavigationRailStyles.xaml" />
                 <ResourceDictionary Source="Theming/PickersStyles.xaml" />
+                <ResourceDictionary Source="Theming/ProgressIndicatorsStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
