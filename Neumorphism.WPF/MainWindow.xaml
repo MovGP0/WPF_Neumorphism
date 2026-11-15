@@ -57,16 +57,18 @@
                              TextChanged="SearchBox_TextChanged" />
                     <TextBlock Grid.Row="2" Text="Control groups" Margin="0,28,0,10"
                                FontSize="13" FontWeight="SemiBold" Style="{StaticResource SupportingText}" />
-                    <ListBox x:Name="Groups" Grid.Row="3"
-                             AutomationProperties.Name="Control groups"
-                             Padding="4" Background="Transparent" BorderThickness="0"
-                             ItemContainerStyle="{StaticResource GroupItem}"
-                             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                             ScrollViewer.VerticalScrollBarVisibility="Auto"
-                             ScrollViewer.CanContentScroll="False"
-                             PreviewMouseLeftButtonDown="Groups_PreviewMouseLeftButtonDown"
-                             PreviewKeyDown="Groups_PreviewKeyDown"
-                             SelectionChanged="Groups_SelectionChanged" />
+                    <ContentControl Style="{StaticResource Neumorphism.ListSurface}" Grid.Row="3" Margin="0,0,1,3"
+                                    Background="{DynamicResource MaterialDesign.Brush.SurfaceContainerLow}">
+                        <ListBox x:Name="Groups" Style="{StaticResource Neumorphism.ListBox}"
+                                 AutomationProperties.Name="Control groups"
+                                 Padding="4" Background="Transparent" BorderThickness="0"
+                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                 ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                 ScrollViewer.CanContentScroll="False"
+                                 PreviewMouseLeftButtonDown="Groups_PreviewMouseLeftButtonDown"
+                                 PreviewKeyDown="Groups_PreviewKeyDown"
+                                 SelectionChanged="Groups_SelectionChanged" />
+                    </ContentControl>
                 </Grid>
             </Border>
 

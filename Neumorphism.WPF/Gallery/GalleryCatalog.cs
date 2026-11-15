@@ -41,6 +41,7 @@ internal static class GalleryCatalog
         "Expander" => new ExpanderPage(),
         "Fields" => new FieldsPage(),
         "Group Boxes" => new GroupBoxesPage(),
+        "Lists" => new ListsPage(),
         _ => null
     };
 }
