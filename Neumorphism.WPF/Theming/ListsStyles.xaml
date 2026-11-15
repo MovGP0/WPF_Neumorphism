@@ -15,7 +15,7 @@
     </Style>
     <Style x:Key="Neumorphism.ListBoxItem" TargetType="ListBoxItem">
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.OnSurface}" />
-        <Setter Property="FocusVisualStyle" Value="{StaticResource GalleryFocus}" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="Template">
             <Setter.Value>
@@ -26,6 +26,8 @@
                                 HorizontalAlignment="Left" VerticalAlignment="Center" Margin="4,0,0,0"
                                 Background="{DynamicResource MaterialDesign.Brush.Primary}" />
                         <ContentPresenter Margin="14,5" VerticalAlignment="Center" />
+                        <Control Style="{StaticResource Neumorphism.FocusOutline}"
+                                 theme:SurfaceChrome.CornerRadius="{Binding CornerRadius, ElementName=Face}" />
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
@@ -45,7 +47,7 @@
     </Style>
     <Style x:Key="Neumorphism.ListViewItem" TargetType="ListViewItem">
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.OnSurface}" />
-        <Setter Property="FocusVisualStyle" Value="{StaticResource GalleryFocus}" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="Template">
             <Setter.Value>
@@ -58,6 +60,8 @@
 
                         <GridViewRowPresenter Margin="10,0,0,0" Content="{TemplateBinding Content}"
                                               Columns="{Binding View.Columns, RelativeSource={RelativeSource AncestorType=ListView}}" />
+                        <Control Style="{StaticResource Neumorphism.FocusOutline}"
+                                 theme:SurfaceChrome.CornerRadius="{Binding CornerRadius, ElementName=Face}" />
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">

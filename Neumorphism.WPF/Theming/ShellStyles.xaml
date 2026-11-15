@@ -1,14 +1,35 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <Style x:Key="GalleryFocus">
-        <Setter Property="Control.Template">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:theme="clr-namespace:Neumorphism.WPF.Theming">
+    <Style x:Key="Neumorphism.FocusOutline" TargetType="Control">
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="IsHitTestVisible" Value="False" />
+        <Setter Property="Visibility" Value="Collapsed" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
+        <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate>
-                    <Border Margin="-3" CornerRadius="16" BorderThickness="2"
-                            BorderBrush="{DynamicResource MaterialDesign.Brush.Primary}" />
+                <ControlTemplate TargetType="Control">
+                    <Grid>
+                        <Border CornerRadius="{TemplateBinding theme:SurfaceChrome.CornerRadius}"
+                                BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}"
+                                Opacity="{DynamicResource Neumorphism.Opacity.FocusGlow}">
+                            <Border.Effect>
+                                <BlurEffect Radius="5" />
+                            </Border.Effect>
+                        </Border>
+                        <Border CornerRadius="{TemplateBinding theme:SurfaceChrome.CornerRadius}"
+                                BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" />
+                    </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding IsKeyboardFocused, RelativeSource={RelativeSource TemplatedParent}}" Value="True">
+                <Setter Property="Visibility" Value="Visible" />
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 
     <Style x:Key="Heading" TargetType="TextBlock">
@@ -77,19 +98,23 @@
 
     <Style x:Key="GroupItem" TargetType="ListBoxItem">
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.OnSurface}" />
-        <Setter Property="FocusVisualStyle" Value="{StaticResource GalleryFocus}" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Margin" Value="0,0,0,4" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ListBoxItem">
-                    <Border x:Name="Face" CornerRadius="14" Padding="10,0" MinHeight="42"
-                            Background="Transparent" BorderThickness="1">
-                        <DockPanel>
-                            <Border x:Name="Marker" DockPanel.Dock="Left" Margin="0,0,10,0"
-                                    Width="3" Height="16" CornerRadius="1.5" Background="Transparent" />
-                            <ContentPresenter VerticalAlignment="Center" />
-                        </DockPanel>
-                    </Border>
+                    <Grid>
+                        <Border x:Name="Face" CornerRadius="14" Padding="10,0" MinHeight="42"
+                                Background="Transparent" BorderThickness="1">
+                            <DockPanel>
+                                <Border x:Name="Marker" DockPanel.Dock="Left" Margin="0,0,10,0"
+                                        Width="3" Height="16" CornerRadius="1.5" Background="Transparent" />
+                                <ContentPresenter VerticalAlignment="Center" />
+                            </DockPanel>
+                        </Border>
+                        <Control Style="{StaticResource Neumorphism.FocusOutline}"
+                                 theme:SurfaceChrome.CornerRadius="{Binding CornerRadius, ElementName=Face}" />
+                    </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="Face" Property="Background" Value="{DynamicResource MaterialDesign.Brush.SurfaceContainerHigh}" />

@@ -11,7 +11,7 @@
     </DataTemplate>
     <Style x:Key="Neumorphism.DestinationItem" TargetType="ListBoxItem">
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.OnSurface}" />
-        <Setter Property="FocusVisualStyle" Value="{StaticResource GalleryFocus}" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="AutomationProperties.Name" Value="{Binding Name}" />
         <Setter Property="MinWidth" Value="88" />
         <Setter Property="Margin" Value="4" />
@@ -24,6 +24,8 @@
                                 Margin="0,0,0,6" CornerRadius="1" Visibility="Collapsed"
                                 Background="{DynamicResource MaterialDesign.Brush.Primary}" />
                         <ContentPresenter Margin="10,9,10,12" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <Control Style="{StaticResource Neumorphism.FocusOutline}"
+                                 theme:SurfaceChrome.CornerRadius="{Binding CornerRadius, ElementName=Face}" />
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">

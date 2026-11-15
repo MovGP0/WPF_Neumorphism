@@ -4,14 +4,18 @@
     <Style x:Key="Neumorphism.CalendarDay" TargetType="CalendarDayButton">
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.OnSurface}" />
         <Setter Property="FontSize" Value="13" />
-        <Setter Property="FocusVisualStyle" Value="{StaticResource GalleryFocus}" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="MinHeight" Value="30" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="CalendarDayButton">
-                    <Border x:Name="Face" Margin="2" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" CornerRadius="8">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                    </Border>
+                    <Grid Margin="2">
+                        <Border x:Name="Face" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" CornerRadius="8">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <Control Style="{StaticResource Neumorphism.FocusOutline}"
+                                 theme:SurfaceChrome.CornerRadius="{Binding CornerRadius, ElementName=Face}" />
+                    </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsInactive" Value="True"><Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.OnSurfaceVariant}" /></Trigger>
                         <Trigger Property="IsToday" Value="True"><Setter TargetName="Face" Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Outline}" /></Trigger>

@@ -6,7 +6,8 @@
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
         <StackPanel Margin="2,12,14,24">
             <TextBlock Text="Side navigation" Style="{StaticResource GallerySection}" />
-            <ContentControl Style="{StaticResource Neumorphism.OutlinedCard}" Padding="0">
+            <ContentControl Style="{StaticResource Neumorphism.RaisedCard}" Padding="0" Margin="3,2"
+                            theme:SurfaceChrome.Elevation="{x:Static theme:SurfaceElevation.Level2}">
                 <DockPanel>
                     <Border DockPanel.Dock="Left" BorderBrush="{DynamicResource MaterialDesign.Brush.OutlineVariant}" BorderThickness="0,0,1,0">
                         <ListBox x:Name="Navigation" Style="{StaticResource Neumorphism.NavigationRail}"

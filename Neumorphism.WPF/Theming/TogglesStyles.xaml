@@ -6,7 +6,7 @@
     <Style x:Key="Neumorphism.MarkedToggle" TargetType="ToggleButton">
         <Setter Property="MinHeight" Value="34" />
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.OnSurface}" />
-        <Setter Property="FocusVisualStyle" Value="{StaticResource GalleryFocus}" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ToggleButton">
@@ -15,11 +15,15 @@
                             <Border x:Name="Well" CornerRadius="{TemplateBinding theme:SurfaceChrome.CornerRadius}"
                                     Background="{DynamicResource MaterialDesign.Brush.SurfaceContainer}"
                                     BorderBrush="{DynamicResource MaterialDesign.Brush.Outline}" BorderThickness="1" />
+                            <theme:ReliefLayer Kind="Inset" CornerRadius="{TemplateBinding theme:SurfaceChrome.CornerRadius}"
+                                               Margin="1" BorderThickness="1" Elevation="{x:Static theme:SurfaceElevation.Level1}" />
                             <Path x:Name="Mark" Data="{TemplateBinding Tag}" Fill="{DynamicResource MaterialDesign.Brush.Primary}"
                                   Stretch="Uniform" Width="13" Height="13" HorizontalAlignment="Center" VerticalAlignment="Center"
                                   Visibility="Collapsed" />
                             <Border x:Name="Mixed" Width="11" Height="2" CornerRadius="1" Visibility="Collapsed"
                                     Background="{DynamicResource MaterialDesign.Brush.Primary}" />
+                            <Control Style="{StaticResource Neumorphism.FocusOutline}"
+                                     theme:SurfaceChrome.CornerRadius="{TemplateBinding theme:SurfaceChrome.CornerRadius}" />
                         </Grid>
                         <ContentPresenter VerticalAlignment="Center" RecognizesAccessKey="True" />
                     </DockPanel>
@@ -53,7 +57,7 @@
     </Style>
     <Style x:Key="Neumorphism.Switch" TargetType="ToggleButton">
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.OnSurface}" />
-        <Setter Property="FocusVisualStyle" Value="{StaticResource GalleryFocus}" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="MinHeight" Value="40" />
         <Setter Property="Template">
             <Setter.Value>
@@ -66,11 +70,17 @@
                             <theme:ReliefLayer Kind="Inset" CornerRadius="12" Margin="1" BorderThickness="1"
                                                Elevation="{x:Static theme:SurfaceElevation.Level2}" />
                             <Grid x:Name="Thumb" Width="18" Height="18" HorizontalAlignment="Left" Margin="4">
+                                <theme:ReliefLayer Kind="Highlight" CornerRadius="9" Elevation="{x:Static theme:SurfaceElevation.Level1}"
+                                                   Background="{DynamicResource MaterialDesign.Brush.Surface}" />
                                 <theme:ReliefLayer Kind="Shade" CornerRadius="9" Elevation="{x:Static theme:SurfaceElevation.Level1}"
                                                    Background="{DynamicResource MaterialDesign.Brush.Surface}" />
                                 <Border x:Name="Knob" CornerRadius="9" BorderThickness="1" Background="{DynamicResource MaterialDesign.Brush.Surface}"
                                         BorderBrush="{DynamicResource MaterialDesign.Brush.Outline}" />
+                                <theme:ReliefLayer Kind="RaisedEdge" CornerRadius="8" Margin="1" BorderThickness="1"
+                                                   Elevation="{x:Static theme:SurfaceElevation.Level1}" />
                             </Grid>
+                            <Control Style="{StaticResource Neumorphism.FocusOutline}"
+                                     theme:SurfaceChrome.CornerRadius="{Binding CornerRadius, ElementName=Well}" />
                         </Grid>
                         <ContentPresenter VerticalAlignment="Center" RecognizesAccessKey="True" />
                     </DockPanel>

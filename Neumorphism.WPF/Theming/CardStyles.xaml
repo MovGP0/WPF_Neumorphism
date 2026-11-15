@@ -28,15 +28,15 @@
                         <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 CornerRadius="{TemplateBinding theme:SurfaceChrome.CornerRadius}" />
-                        <Border x:Name="RaisedEdge" IsHitTestVisible="False" Visibility="Collapsed" BorderThickness="1"
-                                BorderBrush="{DynamicResource Neumorphism.Brush.RaisedEdge}"
-                                CornerRadius="{TemplateBinding theme:SurfaceChrome.CornerRadius}" />
                         <theme:ReliefLayer x:Name="InnerRelief" Kind="Inset" Visibility="Collapsed" BorderThickness="2"
                                            CornerRadius="{TemplateBinding theme:SurfaceChrome.CornerRadius}"
                                            Elevation="{TemplateBinding theme:SurfaceChrome.Elevation}" />
                         <ContentPresenter Margin="{TemplateBinding Padding}"
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                        <Border x:Name="RaisedEdge" IsHitTestVisible="False" Visibility="Collapsed" BorderThickness="1"
+                                BorderBrush="{DynamicResource Neumorphism.Brush.RaisedEdge}"
+                                CornerRadius="{TemplateBinding theme:SurfaceChrome.CornerRadius}" />
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="theme:SurfaceChrome.Relief" Value="Raised">

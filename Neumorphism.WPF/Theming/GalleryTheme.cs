@@ -102,55 +102,68 @@ internal sealed class GalleryTheme(ResourceDictionary applicationResources)
     private void AddSurfaceColors(ResourceDictionary resources, DynamicScheme scheme, bool dark, bool highContrast)
     {
         double tone = _colors.Surface.GetTone(scheme);
-        Color highlight = NeutralAt(tone + (dark ? 26 : 10));
+        Color highlight = NeutralAt(tone + (dark ? 31 : 10));
         Color shade = NeutralAt(tone - (dark ? 16 : 40));
-        double highlightOpacity = highContrast ? 0.0 : dark ? 0.45 : 0.95;
+        double highlightOpacity = highContrast ? 0.0 : dark ? 0.55 : 0.95;
         double shadeOpacity = highContrast ? 0.0 : dark ? 0.75 : 0.37;
 
         resources["Neumorphism.Color.Shade"] = shade;
         resources["Neumorphism.Opacity.Shade"] = shadeOpacity;
+        resources["Neumorphism.Opacity.FocusGlow"] = highContrast ? 0.0 : 0.42;
         resources["Neumorphism.Brush.ButtonDisabledText"] = highContrast
             ? SystemColors.GrayTextBrush
             : BrushFrom(WithOpacity(_colors.OnSurfaceVariant.GetColor(scheme), 0.64));
-        resources["Neumorphism.Brush.RaisedEdge"] = highContrast
-            ? SystemColors.WindowTextBrush
-            : MakeGradient(new Point(1, 1), new GradientStopCollection
-            {
-                new(WithOpacity(highlight, dark ? 0.70 : 0.94), 0),
-                new(WithOpacity(shade, dark ? 0.65 : 0.29), 1)
-            });
-        ReliefPaint[] palette = SurfaceElevation.Levels.Select(CreateReliefPaint).ToArray();
+        ReliefPaint[][] palette = Enum.GetValues<SurfaceLightDirection>().Select(CreateDirectionalPalette).ToArray();
         resources[ReliefLayer.PaletteKey] = palette;
-        resources["Neumorphism.Brush.InsetEdge"] = palette[SurfaceElevation.Level2.Level].InsetEdge;
-        resources["Neumorphism.Brush.InsetFill"] = palette[SurfaceElevation.Level2.Level].InsetFill;
+        ReliefPaint standard = palette[(int)SurfaceLightDirection.Diagonal][SurfaceElevation.Level2.Level];
+        resources["Neumorphism.Brush.RaisedEdge"] = standard.RaisedEdge;
+        resources["Neumorphism.Brush.InsetEdge"] = standard.InsetEdge;
+        resources["Neumorphism.Brush.InsetFill"] = standard.InsetFill;
 
         Color NeutralAt(double value) =>
             ColorUtils.ColorFromArgb(scheme.NeutralPalette.Tone((int)Math.Clamp(Math.Round(value), 0, 100)));
 
-        ReliefPaint CreateReliefPaint(SurfaceElevation level)
+        ReliefPaint[] CreateDirectionalPalette(SurfaceLightDirection direction)
         {
-            var lightEffect = MakeShadow(highlight, highlightOpacity, 135, level.HighlightDepth, level.HighlightBlur);
-            var shadeEffect = MakeShadow(shade, shadeOpacity, 315, level.ShadeDepth, level.ShadeBlur);
-            if (level.Level == 0)
-                return new(lightEffect, shadeEffect, Brushes.Transparent, Brushes.Transparent);
-            if (highContrast)
-                return new(lightEffect, shadeEffect, SystemColors.HighlightBrush, Brushes.Transparent);
+            (double angle, Point start, Point end) = direction switch
+            {
+                SurfaceLightDirection.Side => (180, new Point(0, 0.5), new Point(1, 0.5)),
+                SurfaceLightDirection.Top => (90, new Point(0.5, 0), new Point(0.5, 1)),
+                _ => (135, new Point(0, 0), new Point(1, 1))
+            };
+            Brush raisedEdge = highContrast ? SystemColors.WindowTextBrush
+                : MakeGradient(start, end, new GradientStopCollection
+                {
+                    new(WithOpacity(highlight, dark ? 0.82 : 0.94), 0),
+                    new(WithOpacity(shade, dark ? 0.65 : 0.29), 1)
+                });
+            return SurfaceElevation.Levels.Select(CreateReliefPaint).ToArray();
 
-            double strength = level.InsetStrength;
-            Brush edge = MakeGradient(new Point(1, 1), new GradientStopCollection
+            ReliefPaint CreateReliefPaint(SurfaceElevation level)
             {
-                new(WithOpacity(shade, Math.Min(1, strength * (dark ? 0.72 : 0.30))), 0),
-                new(Colors.Transparent, 0.52),
-                new(WithOpacity(highlight, Math.Min(1, strength * (dark ? 0.62 : 0.90))), 1)
-            });
-            Brush fill = MakeGradient(new Point(0, 1), new GradientStopCollection
-            {
-                new(WithOpacity(shade, strength * (dark ? 0.35 : 0.19)), 0),
-                new(WithOpacity(shade, 0), 0.28 * strength),
-                new(WithOpacity(highlight, 0), 1 - 0.21 * strength),
-                new(WithOpacity(highlight, strength * (dark ? 0.24 : 0.42)), 1)
-            });
-            return new(lightEffect, shadeEffect, edge, fill);
+                var lightEffect = MakeShadow(highlight, highlightOpacity, angle, level.HighlightDepth, level.HighlightBlur);
+                var shadeEffect = MakeShadow(shade, shadeOpacity, (angle + 180) % 360, level.ShadeDepth, level.ShadeBlur);
+                if (level.Level == 0)
+                    return new(lightEffect, shadeEffect, Brushes.Transparent, Brushes.Transparent, Brushes.Transparent);
+                if (highContrast)
+                    return new(lightEffect, shadeEffect, raisedEdge, SystemColors.HighlightBrush, Brushes.Transparent);
+
+                double strength = level.InsetStrength;
+                Brush edge = MakeGradient(start, end, new GradientStopCollection
+                {
+                    new(WithOpacity(shade, Math.Min(1, strength * (dark ? 0.72 : 0.30))), 0),
+                    new(Colors.Transparent, 0.52),
+                    new(WithOpacity(highlight, Math.Min(1, strength * (dark ? 0.62 : 0.90))), 1)
+                });
+                Brush fill = MakeGradient(start, end, new GradientStopCollection
+                {
+                    new(WithOpacity(shade, strength * (dark ? 0.35 : 0.19)), 0),
+                    new(WithOpacity(shade, 0), 0.28 * strength),
+                    new(WithOpacity(highlight, 0), 1 - 0.21 * strength),
+                    new(WithOpacity(highlight, strength * (dark ? 0.24 : 0.42)), 1)
+                });
+                return new(lightEffect, shadeEffect, raisedEdge, edge, fill);
+            }
         }
     }
 
@@ -171,9 +184,9 @@ internal sealed class GalleryTheme(ResourceDictionary applicationResources)
     private static Color WithOpacity(Color color, double opacity) =>
         Color.FromArgb((byte)Math.Round(opacity * byte.MaxValue), color.R, color.G, color.B);
 
-    private static LinearGradientBrush MakeGradient(Point endPoint, GradientStopCollection stops)
+    private static LinearGradientBrush MakeGradient(Point startPoint, Point endPoint, GradientStopCollection stops)
     {
-        LinearGradientBrush brush = new(stops, new Point(0, 0), endPoint);
+        LinearGradientBrush brush = new(stops, startPoint, endPoint);
         brush.Freeze();
         return brush;
     }

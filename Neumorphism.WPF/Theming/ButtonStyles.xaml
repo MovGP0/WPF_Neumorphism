@@ -5,6 +5,7 @@
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="theme:SurfaceChrome.Relief" Value="Raised" />
         <Setter Property="theme:SurfaceChrome.CornerRadius" Value="14" />
+        <Setter Property="theme:SurfaceChrome.FocusBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
         <Setter Property="theme:SurfaceChrome.Elevation" Value="{x:Static theme:SurfaceElevation.Level2}" />
         <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Surface}" />
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.OnSurface}" />
@@ -23,18 +24,22 @@
                     <Grid Background="Transparent" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
                         <Grid x:Name="OuterRelief" IsHitTestVisible="False" Visibility="Collapsed">
                             <theme:ReliefLayer Kind="Highlight" Background="{TemplateBinding Background}"
+                                               LightDirection="{TemplateBinding theme:SurfaceChrome.LightDirection}"
                                                CornerRadius="{TemplateBinding theme:SurfaceChrome.CornerRadius}"
                                                Elevation="{TemplateBinding theme:SurfaceChrome.Elevation}" />
                             <theme:ReliefLayer Kind="Shade" Background="{TemplateBinding Background}"
+                                               LightDirection="{TemplateBinding theme:SurfaceChrome.LightDirection}"
                                                CornerRadius="{TemplateBinding theme:SurfaceChrome.CornerRadius}"
                                                Elevation="{TemplateBinding theme:SurfaceChrome.Elevation}" />
                         </Grid>
                         <Border x:Name="Face" Background="{TemplateBinding Background}"
                                 CornerRadius="{TemplateBinding theme:SurfaceChrome.CornerRadius}" />
-                        <Border x:Name="RaisedEdge" IsHitTestVisible="False" Visibility="Collapsed" BorderThickness="1"
-                                CornerRadius="{TemplateBinding theme:SurfaceChrome.CornerRadius}"
-                                BorderBrush="{DynamicResource Neumorphism.Brush.RaisedEdge}" />
+                        <theme:ReliefLayer x:Name="RaisedEdge" Kind="RaisedEdge" Visibility="Collapsed" BorderThickness="1"
+                                           LightDirection="{TemplateBinding theme:SurfaceChrome.LightDirection}"
+                                           CornerRadius="{TemplateBinding theme:SurfaceChrome.CornerRadius}"
+                                           Elevation="{TemplateBinding theme:SurfaceChrome.Elevation}" />
                         <theme:ReliefLayer x:Name="InnerRelief" Kind="Inset" Visibility="Collapsed" BorderThickness="2"
+                                           LightDirection="{TemplateBinding theme:SurfaceChrome.LightDirection}"
                                            CornerRadius="{TemplateBinding theme:SurfaceChrome.CornerRadius}"
                                            Elevation="{TemplateBinding theme:SurfaceChrome.Elevation}" />
                         <Border x:Name="Outline" IsHitTestVisible="False" BorderThickness="{TemplateBinding BorderThickness}"
@@ -44,9 +49,9 @@
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                           RecognizesAccessKey="True" />
-                        <Border x:Name="FocusRing" IsHitTestVisible="False" Visibility="Collapsed" Margin="-4"
-                                BorderBrush="{DynamicResource MaterialDesign.Brush.Primary}" BorderThickness="2"
-                                CornerRadius="{TemplateBinding theme:SurfaceChrome.CornerRadius}" />
+                        <Control x:Name="FocusRing" Style="{StaticResource Neumorphism.FocusOutline}"
+                                 BorderBrush="{TemplateBinding theme:SurfaceChrome.FocusBrush}"
+                                 theme:SurfaceChrome.CornerRadius="{TemplateBinding theme:SurfaceChrome.CornerRadius}" />
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="theme:SurfaceChrome.Relief" Value="Raised">
@@ -75,9 +80,6 @@
                             <Setter TargetName="InnerRelief" Property="Visibility" Value="Visible" />
                             <Setter TargetName="Outline" Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
                         </DataTrigger>
-                        <Trigger Property="IsKeyboardFocused" Value="True">
-                            <Setter TargetName="FocusRing" Property="Visibility" Value="Visible" />
-                        </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter TargetName="OuterRelief" Property="Visibility" Value="Collapsed" />
                             <Setter TargetName="RaisedEdge" Property="Visibility" Value="Collapsed" />
@@ -94,6 +96,18 @@
 
     <Style TargetType="Button" BasedOn="{StaticResource Neumorphism.ButtonBase}" />
 
+    <Style x:Key="Neumorphism.SideLitButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="theme:SurfaceChrome.LightDirection" Value="Side" />
+    </Style>
+
+    <Style x:Key="Neumorphism.DiagonalLitButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="theme:SurfaceChrome.LightDirection" Value="Diagonal" />
+    </Style>
+
+    <Style x:Key="Neumorphism.TopLitButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="theme:SurfaceChrome.LightDirection" Value="Top" />
+    </Style>
+
     <Style TargetType="ToggleButton" BasedOn="{StaticResource Neumorphism.ButtonBase}">
         <Style.Triggers>
             <Trigger Property="IsChecked" Value="True">
@@ -101,6 +115,7 @@
                 <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.SurfaceContainer}" />
                 <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
                 <Setter Property="BorderThickness" Value="2" />
+                <Setter Property="theme:SurfaceChrome.FocusBrush" Value="{DynamicResource MaterialDesign.Brush.OnSurface}" />
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -109,6 +124,7 @@
         <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.OnPrimary}" />
         <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
+        <Setter Property="theme:SurfaceChrome.FocusBrush" Value="{DynamicResource MaterialDesign.Brush.OnPrimary}" />
     </Style>
 
     <Style x:Key="Neumorphism.RecessedButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">

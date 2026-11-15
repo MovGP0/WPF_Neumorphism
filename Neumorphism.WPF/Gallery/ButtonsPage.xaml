@@ -1,6 +1,7 @@
 <UserControl x:Class="Neumorphism.WPF.Gallery.ButtonsPage"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:theme="clr-namespace:Neumorphism.WPF.Theming"
              ButtonBase.Click="DemoButton_Click">
     <UserControl.Resources>
         <Style x:Key="SpecimenHeading" TargetType="TextBlock">
@@ -74,20 +75,7 @@
         <Style x:Key="SampleMenuItem" TargetType="MenuItem">
             <Setter Property="FontSize" Value="14" />
             <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.OnSurface}" />
-            <Setter Property="FocusVisualStyle">
-                <Setter.Value>
-                    <Style>
-                        <Setter Property="Control.Template">
-                            <Setter.Value>
-                                <ControlTemplate>
-                                    <Border CornerRadius="9" BorderThickness="1"
-                                            BorderBrush="{DynamicResource MaterialDesign.Brush.Primary}" />
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </Setter.Value>
-            </Setter>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="MenuItem">
@@ -101,6 +89,8 @@
                                     Background="{DynamicResource MaterialDesign.Brush.OnSurfaceVariant}" />
                             <ContentPresenter ContentSource="Header" RecognizesAccessKey="True"
                                               VerticalAlignment="Center" Margin="14,8" />
+                            <Control Style="{StaticResource Neumorphism.FocusOutline}"
+                                     theme:SurfaceChrome.CornerRadius="{Binding CornerRadius, ElementName=Row}" />
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsHighlighted" Value="True">
@@ -135,6 +125,40 @@
                         <Button Content="Text" Style="{StaticResource Neumorphism.TextButton}" Margin="0,6,4,6" />
                     </WrapPanel>
                 </Grid>
+            </Border>
+            <Border Style="{StaticResource SpecimenRow}">
+                <StackPanel>
+                    <TextBlock Text="Light direction" Style="{StaticResource SpecimenHeading}" Margin="0,0,0,10" />
+                    <UniformGrid Columns="3">
+                        <StackPanel Margin="12,0">
+                            <TextBlock Text="Side" TextAlignment="Center" Style="{StaticResource SupportingText}" />
+                            <Button x:Name="SideLight" Style="{StaticResource Neumorphism.SideLitButton}" Content="Raised"
+                                    Margin="0,12,0,14" theme:SurfaceChrome.Elevation="{x:Static theme:SurfaceElevation.Level3}"
+                                    AutomationProperties.Name="Side light raised" />
+                            <Button Style="{StaticResource Neumorphism.SideLitButton}" Content="Recessed"
+                                    theme:SurfaceChrome.Relief="Recessed" theme:SurfaceChrome.Elevation="{x:Static theme:SurfaceElevation.Level3}"
+                                    AutomationProperties.Name="Side light recessed" />
+                        </StackPanel>
+                        <StackPanel Margin="12,0">
+                            <TextBlock Text="Diagonal" TextAlignment="Center" Style="{StaticResource SupportingText}" />
+                            <Button x:Name="DiagonalLight" Style="{StaticResource Neumorphism.DiagonalLitButton}" Content="Raised"
+                                    Margin="0,12,0,14" theme:SurfaceChrome.Elevation="{x:Static theme:SurfaceElevation.Level3}"
+                                    AutomationProperties.Name="Diagonal light raised" />
+                            <Button Style="{StaticResource Neumorphism.DiagonalLitButton}" Content="Recessed"
+                                    theme:SurfaceChrome.Relief="Recessed" theme:SurfaceChrome.Elevation="{x:Static theme:SurfaceElevation.Level3}"
+                                    AutomationProperties.Name="Diagonal light recessed" />
+                        </StackPanel>
+                        <StackPanel Margin="12,0">
+                            <TextBlock Text="Top" TextAlignment="Center" Style="{StaticResource SupportingText}" />
+                            <Button x:Name="TopLight" Style="{StaticResource Neumorphism.TopLitButton}" Content="Raised"
+                                    Margin="0,12,0,14" theme:SurfaceChrome.Elevation="{x:Static theme:SurfaceElevation.Level3}"
+                                    AutomationProperties.Name="Top light raised" />
+                            <Button Style="{StaticResource Neumorphism.TopLitButton}" Content="Recessed"
+                                    theme:SurfaceChrome.Relief="Recessed" theme:SurfaceChrome.Elevation="{x:Static theme:SurfaceElevation.Level3}"
+                                    AutomationProperties.Name="Top light recessed" />
+                        </StackPanel>
+                    </UniformGrid>
+                </StackPanel>
             </Border>
             <Border Style="{StaticResource SpecimenRow}">
                 <Grid>

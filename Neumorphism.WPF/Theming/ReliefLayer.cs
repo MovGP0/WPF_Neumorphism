@@ -9,10 +9,11 @@ public enum ReliefLayerKind
 {
     Highlight,
     Shade,
-    Inset
+    Inset,
+    RaisedEdge
 }
 
-internal sealed record ReliefPaint(DropShadowEffect Highlight, DropShadowEffect Shade, Brush InsetEdge, Brush InsetFill);
+internal sealed record ReliefPaint(DropShadowEffect Highlight, DropShadowEffect Shade, Brush RaisedEdge, Brush InsetEdge, Brush InsetFill);
 
 public sealed class ReliefLayer : Border
 {
@@ -26,8 +27,11 @@ public sealed class ReliefLayer : Border
         nameof(Kind), typeof(ReliefLayerKind), typeof(ReliefLayer),
         new PropertyMetadata(ReliefLayerKind.Highlight, Refresh));
 
+    public static readonly DependencyProperty LightDirectionProperty = SurfaceChrome.LightDirectionProperty.AddOwner(
+        typeof(ReliefLayer), new PropertyMetadata(SurfaceLightDirection.Diagonal, Refresh));
+
     private static readonly DependencyProperty PaletteProperty = DependencyProperty.Register(
-        "Palette", typeof(ReliefPaint[]), typeof(ReliefLayer), new PropertyMetadata(null, Refresh));
+        "Palette", typeof(ReliefPaint[][]), typeof(ReliefLayer), new PropertyMetadata(null, Refresh));
 
     public ReliefLayer()
     {
@@ -47,16 +51,23 @@ public sealed class ReliefLayer : Border
         set => SetValue(KindProperty, value);
     }
 
+    public SurfaceLightDirection LightDirection
+    {
+        get => (SurfaceLightDirection)GetValue(LightDirectionProperty);
+        set => SetValue(LightDirectionProperty, value);
+    }
+
     private static void Refresh(DependencyObject sender, DependencyPropertyChangedEventArgs e)
     {
         var layer = (ReliefLayer)sender;
-        var palette = (ReliefPaint[]?)layer.GetValue(PaletteProperty);
-        var paint = palette?[layer.Elevation.Level];
-
-        if (e.Property == KindProperty && e.OldValue is ReliefLayerKind.Inset)
+        var palette = (ReliefPaint[][]?)layer.GetValue(PaletteProperty);
+        var paint = palette?[(int)layer.LightDirection][layer.Elevation.Level];
+        if (e.Property == KindProperty)
         {
-            layer.InvalidateProperty(BackgroundProperty);
-            layer.InvalidateProperty(BorderBrushProperty);
+            if (e.OldValue is ReliefLayerKind.Inset)
+                layer.InvalidateProperty(BackgroundProperty);
+            if (e.OldValue is ReliefLayerKind.Inset or ReliefLayerKind.RaisedEdge)
+                layer.InvalidateProperty(BorderBrushProperty);
         }
 
         layer.Effect = layer.Kind switch
@@ -71,5 +82,7 @@ public sealed class ReliefLayer : Border
             layer.SetCurrentValue(BackgroundProperty, paint?.InsetFill);
             layer.SetCurrentValue(BorderBrushProperty, paint?.InsetEdge);
         }
+        if (layer.Kind == ReliefLayerKind.RaisedEdge)
+            layer.SetCurrentValue(BorderBrushProperty, paint?.RaisedEdge);
     }
 }

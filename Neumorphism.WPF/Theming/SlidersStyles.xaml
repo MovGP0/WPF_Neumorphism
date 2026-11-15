@@ -8,20 +8,32 @@
             <Setter.Value>
                 <ControlTemplate TargetType="Thumb">
                     <Grid Background="Transparent">
-                        <theme:ReliefLayer x:Name="Shadow" Kind="Shade" Elevation="{x:Static theme:SurfaceElevation.Level1}"
-                                           Background="{DynamicResource MaterialDesign.Brush.Surface}" CornerRadius="11.5" />
+                        <Grid x:Name="OuterRelief" IsHitTestVisible="False">
+                            <theme:ReliefLayer Kind="Highlight" Elevation="{x:Static theme:SurfaceElevation.Level1}"
+                                               Background="{DynamicResource MaterialDesign.Brush.Surface}" CornerRadius="11.5" />
+                            <theme:ReliefLayer Kind="Shade" Elevation="{x:Static theme:SurfaceElevation.Level1}"
+                                               Background="{DynamicResource MaterialDesign.Brush.Surface}" CornerRadius="11.5" />
+                        </Grid>
                         <Border x:Name="Face" CornerRadius="11.5" BorderThickness="1"
                                 Background="{DynamicResource MaterialDesign.Brush.Surface}"
                                 BorderBrush="{DynamicResource MaterialDesign.Brush.Outline}" />
+                        <theme:ReliefLayer x:Name="PressedWell" Kind="Inset" Elevation="{x:Static theme:SurfaceElevation.Level1}"
+                                           CornerRadius="10.5" Margin="1" BorderThickness="1" Visibility="Collapsed" />
                         <Border Width="6" Height="6" CornerRadius="3" Background="{DynamicResource MaterialDesign.Brush.Primary}" />
+                        <Control x:Name="ThumbFocus" Style="{StaticResource Neumorphism.FocusOutline}"
+                                 theme:SurfaceChrome.CornerRadius="{Binding CornerRadius, ElementName=Face}" />
                     </Grid>
                     <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding IsKeyboardFocused, RelativeSource={RelativeSource AncestorType=Slider}}" Value="True">
+                            <Setter TargetName="ThumbFocus" Property="Visibility" Value="Visible" />
+                        </DataTrigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="Face" Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
                         </Trigger>
                         <Trigger Property="IsDragging" Value="True">
-                            <Setter TargetName="Shadow" Property="Visibility" Value="Collapsed" />
-                            <Setter TargetName="Face" Property="Background" Value="{DynamicResource Neumorphism.Brush.InsetFill}" />
+                            <Setter TargetName="OuterRelief" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="PressedWell" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="Face" Property="Background" Value="{DynamicResource MaterialDesign.Brush.SurfaceContainer}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -32,6 +44,8 @@
         <Grid Background="Transparent">
             <Border Height="8" VerticalAlignment="Center" CornerRadius="4" Background="{DynamicResource MaterialDesign.Brush.SurfaceContainer}"
                     BorderBrush="{DynamicResource Neumorphism.Brush.InsetEdge}" BorderThickness="1" />
+            <theme:ReliefLayer Kind="Inset" Height="8" VerticalAlignment="Center" CornerRadius="4" BorderThickness="1"
+                               Elevation="{x:Static theme:SurfaceElevation.Level1}" />
             <Track x:Name="PART_Track">
                 <Track.DecreaseRepeatButton>
                     <RepeatButton IsTabStop="False" Focusable="False" Command="{x:Static Slider.DecreaseLarge}">
@@ -62,6 +76,8 @@
         <Grid Background="Transparent">
             <Border Width="8" HorizontalAlignment="Center" CornerRadius="4" Background="{DynamicResource MaterialDesign.Brush.SurfaceContainer}"
                     BorderBrush="{DynamicResource Neumorphism.Brush.InsetEdge}" BorderThickness="1" />
+            <theme:ReliefLayer Kind="Inset" Width="8" HorizontalAlignment="Center" CornerRadius="4" BorderThickness="1"
+                               Elevation="{x:Static theme:SurfaceElevation.Level1}" />
             <Track x:Name="PART_Track">
                 <Track.DecreaseRepeatButton>
                     <RepeatButton IsTabStop="False" Focusable="False" Command="{x:Static Slider.DecreaseLarge}">
@@ -90,7 +106,7 @@
     </ControlTemplate>
     <Style x:Key="Neumorphism.Slider" TargetType="Slider">
         <Setter Property="Height" Value="30" />
-        <Setter Property="FocusVisualStyle" Value="{StaticResource GalleryFocus}" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="IsMoveToPointEnabled" Value="True" />
         <Setter Property="Template" Value="{StaticResource Neumorphism.HorizontalSlider}" />
         <Style.Triggers>

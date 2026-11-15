@@ -1,6 +1,7 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:gallery="clr-namespace:Neumorphism.WPF.Gallery">
+                    xmlns:gallery="clr-namespace:Neumorphism.WPF.Gallery"
+                    xmlns:theme="clr-namespace:Neumorphism.WPF.Theming">
     <Style x:Key="DelayLabel" TargetType="TextBlock">
         <Setter Property="Foreground" Value="{DynamicResource DelayExample.Brush.Muted}" />
         <Setter Property="FontSize" Value="13" />
@@ -13,22 +14,20 @@
         <Setter Property="HorizontalAlignment" Value="Center" />
     </Style>
 
-    <Style x:Key="DelayFocus">
-        <Setter Property="Control.Template">
-            <Setter.Value>
-                <ControlTemplate>
-                    <Border Margin="-3" BorderThickness="2" CornerRadius="5"
-                            BorderBrush="{DynamicResource DelayExample.Brush.AirCore}" />
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
+    <Style x:Key="DelayFocusOutline" TargetType="Control" BasedOn="{StaticResource Neumorphism.FocusOutline}">
+        <Setter Property="BorderBrush" Value="{DynamicResource DelayExample.Brush.AirCore}" />
+        <Setter Property="BorderThickness" Value="1.5" />
     </Style>
 
     <ControlTemplate x:Key="DelayActionTemplate" TargetType="ButtonBase">
-        <Border x:Name="Face" CornerRadius="13" Background="{DynamicResource DelayExample.Brush.Well}"
-                BorderBrush="{DynamicResource DelayExample.Brush.Edge}" BorderThickness="1" Padding="{TemplateBinding Padding}">
-            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" RecognizesAccessKey="True" />
-        </Border>
+        <Grid>
+            <Border x:Name="Face" CornerRadius="13" Background="{DynamicResource DelayExample.Brush.Well}"
+                    BorderBrush="{DynamicResource DelayExample.Brush.Edge}" BorderThickness="1" Padding="{TemplateBinding Padding}">
+                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" RecognizesAccessKey="True" />
+            </Border>
+            <Control Style="{StaticResource DelayFocusOutline}"
+                     theme:SurfaceChrome.CornerRadius="{Binding CornerRadius, ElementName=Face}" />
+        </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter TargetName="Face" Property="BorderBrush" Value="{DynamicResource DelayExample.Brush.Muted}" />
@@ -40,7 +39,7 @@
     </ControlTemplate>
 
     <Style x:Key="DelayAction" TargetType="Button">
-        <Setter Property="FocusVisualStyle" Value="{StaticResource DelayFocus}" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Foreground" Value="{DynamicResource DelayExample.Brush.Text}" />
         <Setter Property="FontSize" Value="12" />
         <Setter Property="Padding" Value="10,4" />
@@ -51,9 +50,13 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border x:Name="Face" Width="26" Height="26" Background="Transparent" CornerRadius="6">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                    </Border>
+                    <Grid Width="26" Height="26">
+                        <Border x:Name="Face" Background="Transparent" CornerRadius="6">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <Control Style="{StaticResource DelayFocusOutline}"
+                                 theme:SurfaceChrome.CornerRadius="{Binding CornerRadius, ElementName=Face}" />
+                    </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="Face" Property="Background" Value="{DynamicResource DelayExample.Brush.Well}" />
@@ -65,17 +68,21 @@
     </Style>
 
     <Style x:Key="DelaySwitch" TargetType="ToggleButton">
-        <Setter Property="FocusVisualStyle" Value="{StaticResource DelayFocus}" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Foreground" Value="{DynamicResource DelayExample.Brush.Muted}" />
         <Setter Property="FontSize" Value="12" />
         <Setter Property="Padding" Value="12,4" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ToggleButton">
-                    <Border x:Name="Face" CornerRadius="12" Background="Transparent" BorderThickness="1"
-                            BorderBrush="Transparent" Padding="{TemplateBinding Padding}">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" RecognizesAccessKey="True" />
-                    </Border>
+                    <Grid>
+                        <Border x:Name="Face" CornerRadius="12" Background="Transparent" BorderThickness="1"
+                                BorderBrush="Transparent" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" RecognizesAccessKey="True" />
+                        </Border>
+                        <Control Style="{StaticResource DelayFocusOutline}"
+                                 theme:SurfaceChrome.CornerRadius="{Binding CornerRadius, ElementName=Face}" />
+                    </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="Face" Property="BorderBrush" Value="{DynamicResource DelayExample.Brush.Muted}" />
@@ -103,7 +110,7 @@
     <Style x:Key="DelayLamp" TargetType="ToggleButton">
         <Setter Property="Width" Value="20" />
         <Setter Property="Height" Value="20" />
-        <Setter Property="FocusVisualStyle" Value="{StaticResource DelayFocus}" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ToggleButton">
@@ -117,6 +124,8 @@
                         <Ellipse x:Name="Cap" Margin="1" Fill="{DynamicResource DelayExample.Brush.LampCap}"
                                  Stroke="{DynamicResource DelayExample.Brush.Well}"
                                  Effect="{DynamicResource DelayExample.Effect.LampShade}" />
+                        <Control Style="{StaticResource DelayFocusOutline}" Margin="{Binding Margin, ElementName=Cap}"
+                                 theme:SurfaceChrome.CornerRadius="10" />
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsPressed" Value="True">
@@ -135,7 +144,7 @@
     </Style>
 
     <Style x:Key="DelayStep" TargetType="ToggleButton">
-        <Setter Property="FocusVisualStyle" Value="{StaticResource DelayFocus}" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ToggleButton">
@@ -150,6 +159,7 @@
                             <Ellipse x:Name="Lens" Opacity="0"
                                      Fill="{Binding Spill, RelativeSource={RelativeSource AncestorType=gallery:DelayExamplePage}}"
                                      Stroke="{Binding Core, RelativeSource={RelativeSource AncestorType=gallery:DelayExamplePage}}" />
+                            <Control Style="{StaticResource DelayFocusOutline}" theme:SurfaceChrome.CornerRadius="15.5" />
                         </Grid>
                         <TextBlock Text="⌃" Style="{StaticResource DelayLabel}" Opacity=".5" HorizontalAlignment="Center" Height="12" />
                         <TextBlock x:Name="StepLabel" Text="–" FontFamily="Consolas" FontSize="14" HorizontalAlignment="Center"
@@ -177,7 +187,7 @@
     </Style>
 
     <Style x:Key="DelayDialBase" TargetType="gallery:DelayDial">
-        <Setter Property="FocusVisualStyle" Value="{StaticResource DelayFocus}" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Cursor" Value="SizeNS" />
         <Setter Property="ToolTip" Value="Drag up or down, or use the arrow keys" />
         <Setter Property="IsSnapToTickEnabled" Value="True" />
@@ -188,20 +198,23 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="gallery:DelayDial">
-                    <StackPanel Background="Transparent" VerticalAlignment="Center">
-                        <Path Data="M 0,3 L 3,0 6,3" Stroke="{DynamicResource DelayExample.Brush.Muted}"
-                              StrokeThickness="1" HorizontalAlignment="Center" />
-                        <TextBlock HorizontalAlignment="Center" FontFamily="Consolas" FontSize="{TemplateBinding FontSize}"
-                                   Foreground="{Binding Accent, RelativeSource={RelativeSource AncestorType=gallery:DelayExamplePage}}">
-                            <Run Text="{Binding Value, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay, StringFormat={}{0:0.#}}" /><Run FontSize="10"
-                                 Foreground="{DynamicResource DelayExample.Brush.Muted}"
-                                 Text="{Binding Unit, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay, StringFormat={} {0}}" />
-                        </TextBlock>
-                        <Path Data="M 0,0 L 3,3 6,0" Stroke="{DynamicResource DelayExample.Brush.Muted}"
-                              StrokeThickness="1" HorizontalAlignment="Center" />
-                        <TextBlock Text="{TemplateBinding Tag}" Style="{StaticResource DelayLabel}" Margin="0,6,0,0"
-                                   Foreground="{DynamicResource DelayExample.Brush.Text}" HorizontalAlignment="Center" />
-                    </StackPanel>
+                    <Grid VerticalAlignment="Center">
+                        <StackPanel Background="Transparent">
+                            <Path Data="M 0,3 L 3,0 6,3" Stroke="{DynamicResource DelayExample.Brush.Muted}"
+                                  StrokeThickness="1" HorizontalAlignment="Center" />
+                            <TextBlock HorizontalAlignment="Center" FontFamily="Consolas" FontSize="{TemplateBinding FontSize}"
+                                       Foreground="{Binding Accent, RelativeSource={RelativeSource AncestorType=gallery:DelayExamplePage}}">
+                                <Run Text="{Binding Value, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay, StringFormat={}{0:0.#}}" /><Run FontSize="10"
+                                     Foreground="{DynamicResource DelayExample.Brush.Muted}"
+                                     Text="{Binding Unit, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay, StringFormat={} {0}}" />
+                            </TextBlock>
+                            <Path Data="M 0,0 L 3,3 6,0" Stroke="{DynamicResource DelayExample.Brush.Muted}"
+                                  StrokeThickness="1" HorizontalAlignment="Center" />
+                            <TextBlock Text="{TemplateBinding Tag}" Style="{StaticResource DelayLabel}" Margin="0,6,0,0"
+                                       Foreground="{DynamicResource DelayExample.Brush.Text}" HorizontalAlignment="Center" />
+                        </StackPanel>
+                        <Control Style="{StaticResource DelayFocusOutline}" theme:SurfaceChrome.CornerRadius="6" />
+                    </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -250,6 +263,7 @@
                                 <TextBlock x:Name="Readout" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Consolas"
                                            FontSize="11" Foreground="{DynamicResource DelayExample.Brush.Text}"
                                            Text="{TemplateBinding ReadoutOverride}" />
+                                <Control Style="{StaticResource DelayFocusOutline}" theme:SurfaceChrome.CornerRadius="32" />
                             </Grid>
                         </Viewbox>
                         <TextBlock Style="{StaticResource DelayLabel}" HorizontalAlignment="Center" Margin="0,9,0,0">
