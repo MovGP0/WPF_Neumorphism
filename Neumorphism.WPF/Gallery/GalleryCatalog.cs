@@ -36,6 +36,7 @@ internal static class GalleryCatalog
     public static UserControl? CreatePage(string group) => group switch
     {
         "Chips" => new ChipsPage(),
+        "ComboBoxes" => new ComboBoxesPage(),
         _ => null
     };
 }

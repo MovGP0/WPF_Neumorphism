@@ -1,0 +1,38 @@
+<UserControl x:Class="Neumorphism.WPF.Gallery.ComboBoxesPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:theme="clr-namespace:Neumorphism.WPF.Theming"
+             xmlns:gallery="clr-namespace:Neumorphism.WPF.Gallery">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <StackPanel Margin="2,12,14,24">
+            <UniformGrid Columns="2">
+                <StackPanel Margin="0,0,16,0">
+                    <TextBlock x:Name="ChoiceLabel" Text="Fixed choices" Style="{StaticResource GallerySection}" />
+                    <ComboBox x:Name="Choice" Style="{StaticResource Neumorphism.ComboBox}" SelectedIndex="0"
+                              AutomationProperties.LabeledBy="{Binding ElementName=ChoiceLabel}">
+                        <system:String xmlns:system="clr-namespace:System;assembly=System.Runtime">Studio</system:String><system:String xmlns:system="clr-namespace:System;assembly=System.Runtime">Workshop</system:String><system:String xmlns:system="clr-namespace:System;assembly=System.Runtime">Library</system:String>
+                    </ComboBox>
+                    <TextBlock Text="{Binding SelectedItem, ElementName=Choice, StringFormat='Selected: {0}'}"
+                               Style="{StaticResource SupportingText}" Margin="0,12,0,0" />
+                </StackPanel>
+                <StackPanel Margin="0,0,10,0">
+                    <TextBlock x:Name="EditableLabel" Text="Editable choices" Style="{StaticResource GallerySection}" />
+                    <ComboBox x:Name="Editable" Style="{StaticResource Neumorphism.ComboBox}" IsEditable="True" SelectedIndex="0"
+                              AutomationProperties.LabeledBy="{Binding ElementName=EditableLabel}">
+                        <system:String xmlns:system="clr-namespace:System;assembly=System.Runtime">Morning</system:String><system:String xmlns:system="clr-namespace:System;assembly=System.Runtime">Afternoon</system:String><system:String xmlns:system="clr-namespace:System;assembly=System.Runtime">Evening</system:String>
+                    </ComboBox>
+                    <TextBlock Text="Choose a suggestion or enter your own value." Style="{StaticResource SupportingText}" Margin="0,12,0,0" />
+                </StackPanel>
+            </UniformGrid>
+            <Border Style="{StaticResource GalleryDivider}">
+                <StackPanel Width="220" HorizontalAlignment="Left">
+                    <TextBlock x:Name="DisabledLabel" Text="Disabled" Style="{StaticResource GallerySection}" />
+                    <ComboBox Style="{StaticResource Neumorphism.ComboBox}" IsEnabled="False" SelectedIndex="0"
+                              AutomationProperties.LabeledBy="{Binding ElementName=DisabledLabel}">
+                        <system:String xmlns:system="clr-namespace:System;assembly=System.Runtime">Restricted</system:String>
+                    </ComboBox>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

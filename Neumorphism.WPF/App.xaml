@@ -10,6 +10,7 @@
                 <ResourceDictionary Source="Theming/CardStyles.xaml" />
                 <ResourceDictionary Source="Theming/ScrollBarStyles.xaml" />
                 <ResourceDictionary Source="Theming/ChipsStyles.xaml" />
+                <ResourceDictionary Source="Theming/ComboBoxesStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
