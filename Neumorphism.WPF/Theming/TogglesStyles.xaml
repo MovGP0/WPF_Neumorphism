@@ -1,0 +1,96 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:theme="clr-namespace:Neumorphism.WPF.Theming">
+    <StreamGeometry x:Key="Neumorphism.CheckMark">M 0,6 L 2,4 5,7 10,1 12,3 5,11 Z</StreamGeometry>
+    <StreamGeometry x:Key="Neumorphism.RadioMark">M 6,1 A 5,5 0 1 1 5.99,1 Z</StreamGeometry>
+    <Style x:Key="Neumorphism.MarkedToggle" TargetType="ToggleButton">
+        <Setter Property="MinHeight" Value="34" />
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.OnSurface}" />
+        <Setter Property="FocusVisualStyle" Value="{StaticResource GalleryFocus}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <DockPanel Background="Transparent">
+                        <Grid DockPanel.Dock="Left" Width="23" Height="23" Margin="0,0,11,0" VerticalAlignment="Center">
+                            <Border x:Name="Well" CornerRadius="{TemplateBinding theme:SurfaceChrome.CornerRadius}"
+                                    Background="{DynamicResource MaterialDesign.Brush.SurfaceContainer}"
+                                    BorderBrush="{DynamicResource MaterialDesign.Brush.Outline}" BorderThickness="1" />
+                            <Path x:Name="Mark" Data="{TemplateBinding Tag}" Fill="{DynamicResource MaterialDesign.Brush.Primary}"
+                                  Stretch="Uniform" Width="13" Height="13" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                  Visibility="Collapsed" />
+                            <Border x:Name="Mixed" Width="11" Height="2" CornerRadius="1" Visibility="Collapsed"
+                                    Background="{DynamicResource MaterialDesign.Brush.Primary}" />
+                        </Grid>
+                        <ContentPresenter VerticalAlignment="Center" RecognizesAccessKey="True" />
+                    </DockPanel>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True"><Setter TargetName="Well" Property="Background" Value="{DynamicResource Neumorphism.Brush.InsetFill}" /></Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="Mark" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="Well" Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="{x:Null}">
+                            <Setter TargetName="Mixed" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="Well" Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Foreground" Value="{DynamicResource Neumorphism.Brush.ButtonDisabledText}" />
+                            <Setter TargetName="Well" Property="Opacity" Value=".5" />
+                            <Setter TargetName="Mark" Property="Opacity" Value=".45" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="Neumorphism.CheckBox" TargetType="CheckBox" BasedOn="{StaticResource Neumorphism.MarkedToggle}">
+        <Setter Property="Tag" Value="{StaticResource Neumorphism.CheckMark}" />
+        <Setter Property="theme:SurfaceChrome.CornerRadius" Value="6" />
+    </Style>
+    <Style x:Key="Neumorphism.RadioButton" TargetType="RadioButton" BasedOn="{StaticResource Neumorphism.MarkedToggle}">
+        <Setter Property="Tag" Value="{StaticResource Neumorphism.RadioMark}" />
+        <Setter Property="theme:SurfaceChrome.CornerRadius" Value="12" />
+    </Style>
+    <Style x:Key="Neumorphism.Switch" TargetType="ToggleButton">
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.OnSurface}" />
+        <Setter Property="FocusVisualStyle" Value="{StaticResource GalleryFocus}" />
+        <Setter Property="MinHeight" Value="40" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <DockPanel Background="Transparent">
+                        <Grid DockPanel.Dock="Left" Width="48" Height="26" Margin="0,0,12,0" VerticalAlignment="Center">
+                            <Border x:Name="Well" CornerRadius="13" BorderThickness="1"
+                                    Background="{DynamicResource MaterialDesign.Brush.SurfaceContainer}"
+                                    BorderBrush="{DynamicResource MaterialDesign.Brush.Outline}" />
+                            <theme:ReliefLayer Kind="Inset" CornerRadius="12" Margin="1" BorderThickness="1"
+                                               Elevation="{x:Static theme:SurfaceElevation.Level2}" />
+                            <Grid x:Name="Thumb" Width="18" Height="18" HorizontalAlignment="Left" Margin="4">
+                                <theme:ReliefLayer Kind="Shade" CornerRadius="9" Elevation="{x:Static theme:SurfaceElevation.Level1}"
+                                                   Background="{DynamicResource MaterialDesign.Brush.Surface}" />
+                                <Border x:Name="Knob" CornerRadius="9" BorderThickness="1" Background="{DynamicResource MaterialDesign.Brush.Surface}"
+                                        BorderBrush="{DynamicResource MaterialDesign.Brush.Outline}" />
+                            </Grid>
+                        </Grid>
+                        <ContentPresenter VerticalAlignment="Center" RecognizesAccessKey="True" />
+                    </DockPanel>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="Thumb" Property="HorizontalAlignment" Value="Right" />
+                            <Setter TargetName="Well" Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
+                            <Setter TargetName="Knob" Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
+                            <Setter TargetName="Knob" Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Well" Property="BorderThickness" Value="2" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Foreground" Value="{DynamicResource Neumorphism.Brush.ButtonDisabledText}" />
+                            <Setter TargetName="Thumb" Property="Opacity" Value=".45" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

@@ -24,6 +24,7 @@
                 <ResourceDictionary Source="Theming/RatingBarStyles.xaml" />
                 <ResourceDictionary Source="Theming/SlidersStyles.xaml" />
                 <ResourceDictionary Source="Theming/SnackbarStyles.xaml" />
+                <ResourceDictionary Source="Theming/TogglesStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

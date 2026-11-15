@@ -50,6 +50,7 @@ internal static class GalleryCatalog
         "Rating Bar" => new RatingBarPage(),
         "Sliders" => new SlidersPage(),
         "Snackbar" => new SnackbarPage(),
+        "Toggles" => new TogglesPage(),
         _ => null
     };
 }

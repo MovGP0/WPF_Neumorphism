@@ -1,0 +1,31 @@
+<UserControl x:Class="Neumorphism.WPF.Gallery.TogglesPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:theme="clr-namespace:Neumorphism.WPF.Theming"
+             xmlns:gallery="clr-namespace:Neumorphism.WPF.Gallery">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <StackPanel Margin="2,12,14,24">
+            <UniformGrid Columns="2" Margin="5,0,0,0">
+                <StackPanel Margin="0,0,15,0">
+                    <TextBlock Text="Check boxes" Style="{StaticResource GallerySection}" />
+                    <CheckBox x:Name="AssetsCheck" Content="Include assets" IsChecked="True" Style="{StaticResource Neumorphism.CheckBox}" />
+                    <CheckBox Content="Apply to all sections" IsThreeState="True" IsChecked="{x:Null}" Style="{StaticResource Neumorphism.CheckBox}" />
+                    <CheckBox Content="Restricted option" IsEnabled="False" Style="{StaticResource Neumorphism.CheckBox}" />
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="Radio buttons" Style="{StaticResource GallerySection}" />
+                    <RadioButton Content="Compact" GroupName="GalleryDensity" IsChecked="True" Style="{StaticResource Neumorphism.RadioButton}" />
+                    <RadioButton Content="Comfortable" GroupName="GalleryDensity" Style="{StaticResource Neumorphism.RadioButton}" />
+                    <RadioButton Content="Spacious" GroupName="GalleryDensity" Style="{StaticResource Neumorphism.RadioButton}" />
+                </StackPanel>
+            </UniformGrid>
+            <Border Style="{StaticResource GalleryDivider}">
+                <StackPanel Margin="5,0,0,0">
+                    <TextBlock Text="Switch and toggle button" Style="{StaticResource GallerySection}" />
+                    <ToggleButton x:Name="Sync" Content="Sync changes" Style="{StaticResource Neumorphism.Switch}" IsChecked="True" HorizontalAlignment="Left" />
+                    <ToggleButton Content="Pin toolbar" HorizontalAlignment="Left" Margin="0,10,0,0" />
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
