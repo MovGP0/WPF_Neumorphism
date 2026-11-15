@@ -1,0 +1,32 @@
+<UserControl x:Class="Neumorphism.WPF.Gallery.PickersPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:theme="clr-namespace:Neumorphism.WPF.Theming"
+             xmlns:gallery="clr-namespace:Neumorphism.WPF.Gallery">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <StackPanel Margin="2,12,14,24">
+            <WrapPanel>
+                <StackPanel Width="285" Margin="0,0,26,12">
+                    <TextBlock x:Name="DateLabel" Text="Date picker" Style="{StaticResource GallerySection}" />
+                    <DatePicker x:Name="Date" Style="{StaticResource Neumorphism.DatePicker}" AutomationProperties.LabeledBy="{Binding ElementName=DateLabel}" />
+                    <TextBlock Text="Calendar" Style="{StaticResource GallerySection}" Margin="0,22,0,10" />
+                    <Calendar x:Name="Month" Style="{StaticResource Neumorphism.Calendar}" AutomationProperties.Name="Preview calendar" />
+                </StackPanel>
+                <StackPanel Width="235" Margin="0,0,8,0">
+                    <TextBlock Text="Time picker" Style="{StaticResource GallerySection}" />
+                    <UniformGrid Columns="2">
+                        <ComboBox x:Name="Hour" Style="{StaticResource Neumorphism.ComboBox}" Margin="0,0,6,0" AutomationProperties.Name="Hour" />
+                        <ComboBox x:Name="Minute" Style="{StaticResource Neumorphism.ComboBox}" Margin="6,0,0,0" AutomationProperties.Name="Minute" />
+                    </UniformGrid>
+                    <TextBlock Margin="0,12,0,0" Style="{StaticResource SupportingText}">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="Selected time: {0}:{1}">
+                                <Binding ElementName="Hour" Path="SelectedItem" /><Binding ElementName="Minute" Path="SelectedItem" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </StackPanel>
+            </WrapPanel>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

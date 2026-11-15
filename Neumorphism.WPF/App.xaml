@@ -19,6 +19,7 @@
                 <ResourceDictionary Source="Theming/MenusAndToolBarsStyles.xaml" />
                 <ResourceDictionary Source="Theming/NavigationBarsStyles.xaml" />
                 <ResourceDictionary Source="Theming/NavigationRailStyles.xaml" />
+                <ResourceDictionary Source="Theming/PickersStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

@@ -1,0 +1,145 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:theme="clr-namespace:Neumorphism.WPF.Theming">
+    <Style x:Key="Neumorphism.CalendarDay" TargetType="CalendarDayButton">
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.OnSurface}" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="FocusVisualStyle" Value="{StaticResource GalleryFocus}" />
+        <Setter Property="MinHeight" Value="30" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="CalendarDayButton">
+                    <Border x:Name="Face" Margin="2" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" CornerRadius="8">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsInactive" Value="True"><Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.OnSurfaceVariant}" /></Trigger>
+                        <Trigger Property="IsToday" Value="True"><Setter TargetName="Face" Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Outline}" /></Trigger>
+                        <Trigger Property="IsMouseOver" Value="True"><Setter TargetName="Face" Property="Background" Value="{DynamicResource Neumorphism.Brush.InsetFill}" /></Trigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="Face" Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
+                            <Setter TargetName="Face" Property="Background" Value="{DynamicResource Neumorphism.Brush.InsetFill}" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                        </Trigger>
+                        <Trigger Property="IsBlackedOut" Value="True"><Setter TargetName="Face" Property="Opacity" Value=".45" /></Trigger>
+                        <Trigger Property="IsEnabled" Value="False"><Setter TargetName="Face" Property="Opacity" Value=".45" /></Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="Neumorphism.CalendarPeriod" TargetType="CalendarButton" BasedOn="{StaticResource Neumorphism.ButtonBase}">
+        <Setter Property="MinHeight" Value="32" />
+        <Setter Property="Padding" Value="3" />
+        <Setter Property="Margin" Value="3" />
+        <Setter Property="theme:SurfaceChrome.Relief" Value="Flat" />
+        <Style.Triggers>
+            <Trigger Property="HasSelectedDays" Value="True">
+                <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="Neumorphism.CalendarItem" TargetType="CalendarItem">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="CalendarItem">
+                    <ControlTemplate.Resources>
+                        <DataTemplate x:Key="{x:Static CalendarItem.DayTitleTemplateResourceKey}">
+                            <TextBlock Text="{Binding}" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                       Foreground="{DynamicResource MaterialDesign.Brush.OnSurfaceVariant}" FontWeight="SemiBold" />
+                        </DataTemplate>
+                    </ControlTemplate.Resources>
+                    <Grid x:Name="PART_Root" MinWidth="266">
+                        <ContentControl Style="{StaticResource Neumorphism.OutlinedCard}" Padding="8"
+                                        Background="{DynamicResource MaterialDesign.Brush.SurfaceContainerLow}"
+                                        theme:SurfaceChrome.CornerRadius="14">
+                            <Grid>
+                                <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="216" /></Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="34" /><ColumnDefinition Width="*" /><ColumnDefinition Width="34" /></Grid.ColumnDefinitions>
+                                <Button x:Name="PART_PreviousButton" Style="{StaticResource Neumorphism.TextButton}" Content="‹"
+                                        AutomationProperties.Name="Previous period" Padding="2" MinHeight="32" />
+                                <Button x:Name="PART_HeaderButton" Grid.Column="1" Style="{StaticResource Neumorphism.TextButton}" Padding="2" MinHeight="32" />
+                                <Button x:Name="PART_NextButton" Grid.Column="2" Style="{StaticResource Neumorphism.TextButton}" Content="›"
+                                        AutomationProperties.Name="Next period" Padding="2" MinHeight="32" />
+                                <Grid x:Name="PART_MonthView" Grid.Row="1" Grid.ColumnSpan="3" Visibility="Hidden">
+                                    <Grid.ColumnDefinitions><ColumnDefinition /><ColumnDefinition /><ColumnDefinition /><ColumnDefinition /><ColumnDefinition /><ColumnDefinition /><ColumnDefinition /></Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions><RowDefinition /><RowDefinition /><RowDefinition /><RowDefinition /><RowDefinition /><RowDefinition /><RowDefinition /></Grid.RowDefinitions>
+                                </Grid>
+                                <Grid x:Name="PART_YearView" Grid.Row="1" Grid.ColumnSpan="3">
+                                    <Grid.ColumnDefinitions><ColumnDefinition /><ColumnDefinition /><ColumnDefinition /><ColumnDefinition /></Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions><RowDefinition /><RowDefinition /><RowDefinition /></Grid.RowDefinitions>
+                                </Grid>
+                            </Grid>
+                        </ContentControl>
+                        <Border x:Name="PART_DisabledVisual" CornerRadius="14" Background="{DynamicResource MaterialDesign.Brush.Surface}"
+                                Opacity=".55" Visibility="Collapsed" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding DisplayMode, RelativeSource={RelativeSource AncestorType=Calendar}}" Value="Month">
+                            <Setter TargetName="PART_MonthView" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="PART_YearView" Property="Visibility" Value="Hidden" />
+                        </DataTrigger>
+                        <Trigger Property="IsEnabled" Value="False"><Setter TargetName="PART_DisabledVisual" Property="Visibility" Value="Visible" /></Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="Neumorphism.Calendar" TargetType="Calendar">
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.OnSurface}" />
+        <Setter Property="CalendarDayButtonStyle" Value="{StaticResource Neumorphism.CalendarDay}" />
+        <Setter Property="CalendarButtonStyle" Value="{StaticResource Neumorphism.CalendarPeriod}" />
+        <Setter Property="CalendarItemStyle" Value="{StaticResource Neumorphism.CalendarItem}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Calendar">
+                    <StackPanel x:Name="PART_Root">
+                        <CalendarItem x:Name="PART_CalendarItem" Style="{TemplateBinding CalendarItemStyle}" />
+                    </StackPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="Neumorphism.DatePicker" TargetType="DatePicker">
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.OnSurface}" />
+        <Setter Property="CalendarStyle" Value="{StaticResource Neumorphism.Calendar}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="DatePicker">
+                    <Grid x:Name="PART_Root">
+                        <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="44" /></Grid.ColumnDefinitions>
+                        <DatePickerTextBox x:Name="PART_TextBox" Foreground="{DynamicResource MaterialDesign.Brush.OnSurface}" Margin="0,0,6,0">
+                            <DatePickerTextBox.Template>
+                                <ControlTemplate TargetType="DatePickerTextBox">
+                                    <Border x:Name="FieldEdge" CornerRadius="14" BorderThickness="1" BorderBrush="{DynamicResource MaterialDesign.Brush.Outline}"
+                                            Background="{DynamicResource Neumorphism.Brush.InsetFill}" Padding="12,0">
+                                        <Grid>
+                                            <ScrollViewer x:Name="PART_ContentHost" VerticalAlignment="Center" />
+                                            <ContentControl x:Name="PART_Watermark" IsHitTestVisible="False" Visibility="Collapsed"
+                                                            Foreground="{DynamicResource MaterialDesign.Brush.OnSurfaceVariant}" VerticalAlignment="Center" />
+                                        </Grid>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="Text" Value="">
+                                            <Setter TargetName="PART_Watermark" Property="Visibility" Value="Visible" />
+                                        </Trigger>
+                                        <Trigger Property="IsKeyboardFocused" Value="True">
+                                            <Setter TargetName="FieldEdge" Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </DatePickerTextBox.Template>
+                        </DatePickerTextBox>
+                        <Button x:Name="PART_Button" Grid.Column="1" Style="{StaticResource Neumorphism.OutlineButton}"
+                                Padding="6" AutomationProperties.Name="Open calendar">
+                            <Path Data="M 2,5 H 16 V 16 H 2 Z M 2,8 H 16 M 6,3 V 6 M 12,3 V 6"
+                                  Stroke="{DynamicResource MaterialDesign.Brush.OnSurface}" StrokeThickness="1.4" />
+                        </Button>
+                        <Popup x:Name="PART_Popup" Placement="Bottom" AllowsTransparency="True" Focusable="False"
+                               StaysOpen="False" PlacementTarget="{Binding ElementName=PART_Root}" VerticalOffset="5" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
