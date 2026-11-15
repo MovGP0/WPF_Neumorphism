@@ -1,0 +1,8 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:theme="clr-namespace:Neumorphism.WPF.Theming">
+    <Style x:Key="Neumorphism.NavigationRail" TargetType="ListBox" BasedOn="{StaticResource Neumorphism.NavigationList}">
+        <Setter Property="Padding" Value="4" />
+        <Setter Property="MinWidth" Value="108" />
+    </Style>
+</ResourceDictionary>

@@ -44,6 +44,7 @@ internal static class GalleryCatalog
         "Lists" => new ListsPage(),
         "Menus & Tool Bars" => new MenusAndToolBarsPage(),
         "Navigation Bars" => new NavigationBarsPage(),
+        "Navigation Rail" => new NavigationRailPage(),
         _ => null
     };
 }
