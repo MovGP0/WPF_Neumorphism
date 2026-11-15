@@ -74,22 +74,38 @@
         <Style x:Key="SampleMenuItem" TargetType="MenuItem">
             <Setter Property="FontSize" Value="14" />
             <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.OnSurface}" />
+            <Setter Property="FocusVisualStyle">
+                <Setter.Value>
+                    <Style>
+                        <Setter Property="Control.Template">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <Border CornerRadius="9" BorderThickness="1"
+                                            BorderBrush="{DynamicResource MaterialDesign.Brush.Primary}" />
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Setter.Value>
+            </Setter>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="MenuItem">
-                        <Border x:Name="Row" Background="Transparent" Padding="12,8" CornerRadius="9" MinHeight="40">
-                            <Grid>
-                                <ContentPresenter ContentSource="Header" RecognizesAccessKey="True"
-                                                  VerticalAlignment="Center" />
-                                <Border x:Name="Marker" Width="3" Height="14" CornerRadius="1.5" Margin="-6,0,0,0"
-                                        HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="Collapsed"
-                                        Background="{DynamicResource MaterialDesign.Brush.OnPrimaryContainer}" />
-                            </Grid>
-                        </Border>
+                        <Grid Background="Transparent" MinHeight="40">
+                            <Border x:Name="Row" CornerRadius="9" />
+                            <Border x:Name="Inset" CornerRadius="9" Visibility="Collapsed" IsHitTestVisible="False"
+                                    Background="{DynamicResource Neumorphism.Brush.InsetFill}"
+                                    BorderBrush="{DynamicResource Neumorphism.Brush.InsetEdge}" BorderThickness="1" />
+                            <Border x:Name="Marker" Width="2" Height="14" CornerRadius="1" Margin="6,0,0,0"
+                                    HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="Collapsed"
+                                    Background="{DynamicResource MaterialDesign.Brush.OnSurfaceVariant}" />
+                            <ContentPresenter ContentSource="Header" RecognizesAccessKey="True"
+                                              VerticalAlignment="Center" Margin="14,8" />
+                        </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsHighlighted" Value="True">
-                                <Setter TargetName="Row" Property="Background" Value="{DynamicResource MaterialDesign.Brush.PrimaryContainer}" />
-                                <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.OnPrimaryContainer}" />
+                                <Setter TargetName="Row" Property="Background" Value="{DynamicResource MaterialDesign.Brush.SurfaceContainer}" />
+                                <Setter TargetName="Inset" Property="Visibility" Value="Visible" />
                                 <Setter TargetName="Marker" Property="Visibility" Value="Visible" />
                             </Trigger>
                         </ControlTemplate.Triggers>

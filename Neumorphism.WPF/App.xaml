@@ -8,6 +8,7 @@
                 <ResourceDictionary Source="Theming/ShellStyles.xaml" />
                 <ResourceDictionary Source="Theming/ButtonStyles.xaml" />
                 <ResourceDictionary Source="Theming/CardStyles.xaml" />
+                <ResourceDictionary Source="Theming/ScrollBarStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
