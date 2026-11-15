@@ -1,0 +1,25 @@
+<UserControl x:Class="Neumorphism.WPF.Gallery.ExpanderPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:theme="clr-namespace:Neumorphism.WPF.Theming"
+             xmlns:gallery="clr-namespace:Neumorphism.WPF.Gallery">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <StackPanel Margin="2,12,14,24">
+            <TextBlock Text="Disclosure panels" Style="{StaticResource GallerySection}" />
+            <StackPanel MaxWidth="660" HorizontalAlignment="Stretch" Margin="4,0,8,0">
+                <Expander x:Name="Overview" Style="{StaticResource Neumorphism.Expander}" Header="_Overview" IsExpanded="True" Margin="0,4,0,12">
+                    <TextBlock Text="The prototype is ready for a keyboard and contrast review." Style="{StaticResource SupportingText}" />
+                </Expander>
+                <Expander Style="{StaticResource Neumorphism.Expander}" Header="_Review notes" Margin="0,4,0,12">
+                    <StackPanel>
+                        <TextBlock Text="Add a note for the review." Style="{StaticResource SupportingText}" Margin="0,0,0,8" />
+                        <TextBox Text="Check the focus order." Style="{StaticResource ShellInput}" AutomationProperties.Name="Review note" />
+                    </StackPanel>
+                </Expander>
+                <Expander Style="{StaticResource Neumorphism.Expander}" Header="Archive" IsEnabled="False" Margin="0,4,0,0">
+                    <TextBlock Text="Archived notes" />
+                </Expander>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
