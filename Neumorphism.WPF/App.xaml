@@ -17,6 +17,7 @@
                 <ResourceDictionary Source="Theming/GroupBoxesStyles.xaml" />
                 <ResourceDictionary Source="Theming/ListsStyles.xaml" />
                 <ResourceDictionary Source="Theming/MenusAndToolBarsStyles.xaml" />
+                <ResourceDictionary Source="Theming/NavigationBarsStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
