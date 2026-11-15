@@ -39,6 +39,7 @@ internal static class GalleryCatalog
         "ComboBoxes" => new ComboBoxesPage(),
         "DataGrids" => new DataGridsPage(),
         "Expander" => new ExpanderPage(),
+        "Fields" => new FieldsPage(),
         _ => null
     };
 }
