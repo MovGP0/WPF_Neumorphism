@@ -12,6 +12,7 @@ public enum SurfaceRelief
 
 public enum SurfaceLightDirection
 {
+    Default,
     Diagonal,
     Side,
     Top
@@ -33,7 +34,7 @@ public static class SurfaceChrome
         value => value is SurfaceElevation);
 
     public static readonly DependencyProperty LightDirectionProperty = DependencyProperty.RegisterAttached(
-        "LightDirection", typeof(SurfaceLightDirection), typeof(SurfaceChrome), new PropertyMetadata(SurfaceLightDirection.Diagonal),
+        "LightDirection", typeof(SurfaceLightDirection), typeof(SurfaceChrome), new PropertyMetadata(SurfaceLightDirection.Default),
         value => Enum.IsDefined((SurfaceLightDirection)value));
 
     public static SurfaceRelief GetRelief(DependencyObject element) => (SurfaceRelief)element.GetValue(ReliefProperty);

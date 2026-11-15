@@ -115,7 +115,7 @@ internal sealed class GalleryTheme(ResourceDictionary applicationResources)
             : BrushFrom(WithOpacity(_colors.OnSurfaceVariant.GetColor(scheme), 0.64));
         ReliefPaint[][] palette = Enum.GetValues<SurfaceLightDirection>().Select(CreateDirectionalPalette).ToArray();
         resources[ReliefLayer.PaletteKey] = palette;
-        ReliefPaint standard = palette[(int)SurfaceLightDirection.Diagonal][SurfaceElevation.Level2.Level];
+        ReliefPaint standard = palette[(int)SurfaceLightDirection.Default][SurfaceElevation.Level2.Level];
         resources["Neumorphism.Brush.RaisedEdge"] = standard.RaisedEdge;
         resources["Neumorphism.Brush.InsetEdge"] = standard.InsetEdge;
         resources["Neumorphism.Brush.InsetFill"] = standard.InsetFill;
@@ -131,12 +131,16 @@ internal sealed class GalleryTheme(ResourceDictionary applicationResources)
                 SurfaceLightDirection.Top => (90, new Point(0.5, 0), new Point(0.5, 1)),
                 _ => (135, new Point(0, 0), new Point(1, 1))
             };
+            // A full-width linear ramp looks nearly horizontal on wide buttons.
+            bool lightCorners = direction == SurfaceLightDirection.Diagonal;
+            Color lightEdge = WithOpacity(highlight, dark ? 0.82 : 0.94);
+            Color darkEdge = WithOpacity(shade, dark ? 0.65 : 0.29);
             Brush raisedEdge = highContrast ? SystemColors.WindowTextBrush
-                : MakeGradient(start, end, new GradientStopCollection
-                {
-                    new(WithOpacity(highlight, dark ? 0.82 : 0.94), 0),
-                    new(WithOpacity(shade, dark ? 0.65 : 0.29), 1)
-                });
+                : lightCorners ? MakeCornerLighting(lightEdge, darkEdge)
+                : MakeGradient(start, end, new GradientStopCollection { new(lightEdge, 0), new(darkEdge, 1) });
+            Brush raisedFill = lightCorners && !highContrast
+                ? MakeCornerLighting(WithOpacity(highlight, dark ? 0.22 : 0.72), WithOpacity(shade, dark ? 0.45 : 0.15))
+                : Brushes.Transparent;
             return SurfaceElevation.Levels.Select(CreateReliefPaint).ToArray();
 
             ReliefPaint CreateReliefPaint(SurfaceElevation level)
@@ -144,25 +148,31 @@ internal sealed class GalleryTheme(ResourceDictionary applicationResources)
                 var lightEffect = MakeShadow(highlight, highlightOpacity, angle, level.HighlightDepth, level.HighlightBlur);
                 var shadeEffect = MakeShadow(shade, shadeOpacity, (angle + 180) % 360, level.ShadeDepth, level.ShadeBlur);
                 if (level.Level == 0)
-                    return new(lightEffect, shadeEffect, Brushes.Transparent, Brushes.Transparent, Brushes.Transparent);
+                    return new(lightEffect, shadeEffect, Brushes.Transparent, Brushes.Transparent, Brushes.Transparent, Brushes.Transparent);
                 if (highContrast)
-                    return new(lightEffect, shadeEffect, raisedEdge, SystemColors.HighlightBrush, Brushes.Transparent);
+                    return new(lightEffect, shadeEffect, raisedEdge, raisedFill, SystemColors.HighlightBrush, Brushes.Transparent);
 
                 double strength = level.InsetStrength;
-                Brush edge = MakeGradient(start, end, new GradientStopCollection
-                {
-                    new(WithOpacity(shade, Math.Min(1, strength * (dark ? 0.72 : 0.30))), 0),
-                    new(Colors.Transparent, 0.52),
-                    new(WithOpacity(highlight, Math.Min(1, strength * (dark ? 0.62 : 0.90))), 1)
-                });
-                Brush fill = MakeGradient(start, end, new GradientStopCollection
-                {
-                    new(WithOpacity(shade, strength * (dark ? 0.35 : 0.19)), 0),
-                    new(WithOpacity(shade, 0), 0.28 * strength),
-                    new(WithOpacity(highlight, 0), 1 - 0.21 * strength),
-                    new(WithOpacity(highlight, strength * (dark ? 0.24 : 0.42)), 1)
-                });
-                return new(lightEffect, shadeEffect, raisedEdge, edge, fill);
+                Color insetDarkEdge = WithOpacity(shade, Math.Min(1, strength * (dark ? 0.72 : 0.30)));
+                Color insetLightEdge = WithOpacity(highlight, Math.Min(1, strength * (dark ? 0.62 : 0.90)));
+                Color insetShade = WithOpacity(shade, strength * (dark ? 0.35 : 0.19));
+                Color insetLight = WithOpacity(highlight, strength * (dark ? 0.24 : 0.42));
+                Brush edge = lightCorners ? MakeCornerLighting(insetDarkEdge, insetLightEdge)
+                    : MakeGradient(start, end, new GradientStopCollection
+                    {
+                        new(insetDarkEdge, 0),
+                        new(Colors.Transparent, 0.52),
+                        new(insetLightEdge, 1)
+                    });
+                Brush fill = lightCorners ? MakeCornerLighting(insetShade, insetLight)
+                    : MakeGradient(start, end, new GradientStopCollection
+                    {
+                        new(insetShade, 0),
+                        new(WithOpacity(shade, 0), 0.28 * strength),
+                        new(WithOpacity(highlight, 0), 1 - 0.21 * strength),
+                        new(insetLight, 1)
+                    });
+                return new(lightEffect, shadeEffect, raisedEdge, raisedFill, edge, fill);
             }
         }
     }
@@ -189,6 +199,25 @@ internal sealed class GalleryTheme(ResourceDictionary applicationResources)
         LinearGradientBrush brush = new(stops, startPoint, endPoint);
         brush.Freeze();
         return brush;
+    }
+
+    private static DrawingBrush MakeCornerLighting(Color upperLeft, Color lowerRight)
+    {
+        var bounds = new RectangleGeometry(new Rect(0, 0, 1, 1));
+        var drawing = new DrawingGroup();
+        drawing.Children.Add(new GeometryDrawing(Corner(new Point(0, 0), upperLeft), null, bounds));
+        drawing.Children.Add(new GeometryDrawing(Corner(new Point(1, 1), lowerRight), null, bounds));
+        var brush = new DrawingBrush(drawing);
+        brush.Freeze();
+        return brush;
+
+        static RadialGradientBrush Corner(Point origin, Color color) => new(color, color with { A = 0 })
+        {
+            Center = origin,
+            GradientOrigin = origin,
+            RadiusX = 0.62,
+            RadiusY = 1
+        };
     }
 
     private static SolidColorBrush BrushFrom(Color color)
