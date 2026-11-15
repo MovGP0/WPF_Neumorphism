@@ -23,6 +23,7 @@
                 <ResourceDictionary Source="Theming/ProgressIndicatorsStyles.xaml" />
                 <ResourceDictionary Source="Theming/RatingBarStyles.xaml" />
                 <ResourceDictionary Source="Theming/SlidersStyles.xaml" />
+                <ResourceDictionary Source="Theming/SnackbarStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

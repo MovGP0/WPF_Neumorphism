@@ -1,0 +1,10 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:theme="clr-namespace:Neumorphism.WPF.Theming">
+    <Style x:Key="Neumorphism.Snackbar" TargetType="ContentControl" BasedOn="{StaticResource Neumorphism.RaisedCard}">
+        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.SurfaceContainerLow}" />
+        <Setter Property="Padding" Value="16,10" />
+        <Setter Property="theme:SurfaceChrome.CornerRadius" Value="14" />
+        <Setter Property="theme:SurfaceChrome.Elevation" Value="{x:Static theme:SurfaceElevation.Level4}" />
+    </Style>
+</ResourceDictionary>
