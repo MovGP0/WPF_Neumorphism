@@ -1,0 +1,84 @@
+<Window x:Class="Neumorphism.WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:Neumorphism.WPF"
+        Title="Neumorphism" Width="1120" Height="760" MinWidth="900" MinHeight="600"
+        WindowStartupLocation="CenterScreen" UseLayoutRounding="True"
+        FontFamily="Segoe UI" FontSize="14" TextOptions.TextFormattingMode="Display"
+        Background="{DynamicResource MaterialDesign.Brush.Surface}"
+        Foreground="{DynamicResource MaterialDesign.Brush.OnSurface}">
+    <Grid Background="{DynamicResource MaterialDesign.Brush.Surface}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Border BorderBrush="{DynamicResource MaterialDesign.Brush.OutlineVariant}" BorderThickness="0,0,0,1">
+            <DockPanel Margin="24,16" LastChildFill="False">
+                <Border DockPanel.Dock="Left" Width="44" Height="44" CornerRadius="14"
+                        Background="{DynamicResource MaterialDesign.Brush.Primary}">
+                    <Path HorizontalAlignment="Center" VerticalAlignment="Center" StrokeThickness="2.5"
+                          StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round"
+                          Stroke="{DynamicResource MaterialDesign.Brush.OnPrimary}"
+                          Data="M 0,17 L 0,0 16,17 16,0" />
+                </Border>
+                <StackPanel DockPanel.Dock="Left" Margin="12,0,0,0" VerticalAlignment="Center">
+                    <TextBlock Text="Neumorphism" FontSize="21" FontWeight="SemiBold" />
+                    <TextBlock Text="WPF control gallery" FontSize="12" Style="{StaticResource SupportingText}" />
+                </StackPanel>
+                <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Center">
+                    <ToggleButton x:Name="PaletteToggle" Content="_Palette" Style="{StaticResource ShellToggle}" />
+                    <ToggleButton x:Name="DarkModeToggle" Content="_Dark mode" Style="{StaticResource ShellToggle}"
+                                  Margin="12,0,0,0" />
+                </StackPanel>
+            </DockPanel>
+        </Border>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="232" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Border Background="{DynamicResource MaterialDesign.Brush.SurfaceContainerLow}"
+                    BorderBrush="{DynamicResource MaterialDesign.Brush.OutlineVariant}" BorderThickness="0,0,1,0">
+                <Grid Margin="20,24,20,16">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Label x:Name="SearchLabel" Content="_Find a group" Target="{Binding ElementName=SearchBox}"
+                           Foreground="{DynamicResource MaterialDesign.Brush.OnSurfaceVariant}"
+                           FontWeight="SemiBold" Padding="0" Margin="0,0,0,8" />
+                    <TextBox x:Name="SearchBox" Grid.Row="1" Style="{StaticResource ShellInput}"
+                             AutomationProperties.LabeledBy="{Binding ElementName=SearchLabel}"
+                             TextChanged="SearchBox_TextChanged" />
+                    <TextBlock Grid.Row="2" Text="Control groups" Margin="0,28,0,10"
+                               FontSize="13" FontWeight="SemiBold" Style="{StaticResource SupportingText}" />
+                    <ListBox x:Name="Groups" Grid.Row="3"
+                             AutomationProperties.Name="Control groups"
+                             Padding="4" Background="Transparent" BorderThickness="0"
+                             ItemContainerStyle="{StaticResource GroupItem}"
+                             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                             ScrollViewer.VerticalScrollBarVisibility="Auto"
+                             ScrollViewer.CanContentScroll="False"
+                             PreviewMouseLeftButtonDown="Groups_PreviewMouseLeftButtonDown"
+                             PreviewKeyDown="Groups_PreviewKeyDown"
+                             SelectionChanged="Groups_SelectionChanged" />
+                </Grid>
+            </Border>
+
+            <Grid Grid.Column="1" Margin="32,24,32,0">
+                <StackPanel x:Name="CatalogView">
+                    <TextBlock x:Name="GroupHeading" Style="{StaticResource Heading}" />
+                    <TextBlock x:Name="NoResults" Text="No control groups match your search."
+                               Margin="0,16,0,0" Style="{StaticResource SupportingText}" Visibility="Collapsed" />
+                </StackPanel>
+
+                <local:PaletteEditor x:Name="Palette" Visibility="Collapsed" ThemeChanged="Palette_ThemeChanged" />
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

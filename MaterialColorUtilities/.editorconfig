@@ -1,0 +1,3 @@
+[*.cs]
+# The upstream color specs intentionally keep compatibility APIs alongside newer APIs.
+dotnet_diagnostic.CS0618.severity = none

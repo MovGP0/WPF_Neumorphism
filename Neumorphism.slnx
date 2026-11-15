@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="MaterialColorUtilities/MaterialColorUtilities.csproj" />
+  <Project Path="Neumorphism.WPF/Neumorphism.WPF.csproj" />
+</Solution>
