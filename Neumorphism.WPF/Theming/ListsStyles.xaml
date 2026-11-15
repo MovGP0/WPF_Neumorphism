@@ -22,9 +22,7 @@
                 <ControlTemplate TargetType="ListBoxItem">
                     <Grid MinHeight="36" Background="Transparent">
                         <Border x:Name="Face" CornerRadius="8" />
-                        <Border x:Name="Marker" Width="3" Height="14" CornerRadius="1.5" Visibility="Collapsed"
-                                HorizontalAlignment="Left" VerticalAlignment="Center" Margin="4,0,0,0"
-                                Background="{DynamicResource MaterialDesign.Brush.Primary}" />
+                        <Control x:Name="Marker" Style="{StaticResource Neumorphism.SelectionLed}" Margin="4,0,0,0" />
                         <ContentPresenter Margin="14,5" VerticalAlignment="Center" />
                         <Control Style="{StaticResource Neumorphism.FocusOutline}"
                                  theme:SurfaceChrome.CornerRadius="{Binding CornerRadius, ElementName=Face}" />
@@ -54,9 +52,7 @@
                 <ControlTemplate TargetType="ListViewItem">
                     <Grid MinHeight="36" Background="Transparent">
                         <Border x:Name="Face" CornerRadius="8" />
-                        <Border x:Name="Marker" Width="3" Height="14" CornerRadius="1.5" Visibility="Collapsed"
-                                HorizontalAlignment="Left" VerticalAlignment="Center" Margin="4,0,0,0"
-                                Background="{DynamicResource MaterialDesign.Brush.Primary}" />
+                        <Control x:Name="Marker" Style="{StaticResource Neumorphism.SelectionLed}" Margin="5,0,0,0" />
 
                         <GridViewRowPresenter Margin="10,0,0,0" Content="{TemplateBinding Content}"
                                               Columns="{Binding View.Columns, RelativeSource={RelativeSource AncestorType=ListView}}" />

@@ -43,9 +43,7 @@
                                 <ContentPresenter x:Name="PART_Header" ContentSource="Header" VerticalAlignment="Center"
                                                   RecognizesAccessKey="True" Margin="5,4,8,4" />
                             </DockPanel>
-                            <Border x:Name="Marker" Width="3" Height="13" CornerRadius="1.5" Visibility="Collapsed" IsHitTestVisible="False"
-                                    HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3,0,0,0"
-                                    Background="{DynamicResource MaterialDesign.Brush.Primary}" />
+                            <Control x:Name="Marker" Style="{StaticResource Neumorphism.SelectionLed}" Margin="4,0,0,0" />
                         </Grid>
                         <ItemsPresenter x:Name="Branch" Margin="20,0,0,0" Visibility="Collapsed" />
                     </StackPanel>

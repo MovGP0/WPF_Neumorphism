@@ -32,6 +32,30 @@
         </Style.Triggers>
     </Style>
 
+    <Style x:Key="Neumorphism.SelectionLed" TargetType="Control">
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="IsHitTestVisible" Value="False" />
+        <Setter Property="Visibility" Value="Collapsed" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Width" Value="4" />
+        <Setter Property="Height" Value="14" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Control">
+                    <Grid>
+                        <Border x:Name="Halo" Margin="-5,-4" Background="{DynamicResource Neumorphism.Brush.SelectionLedGlow}" />
+                        <Border x:Name="CastShadow" CornerRadius="2" Background="{DynamicResource MaterialDesign.Brush.Primary}"
+                                Effect="{DynamicResource Neumorphism.Effect.SelectionLedShadow}" />
+                        <Border x:Name="Lens" CornerRadius="2" BorderThickness="0.65" BorderBrush="{DynamicResource MaterialDesign.Brush.Primary}"
+                                Background="{DynamicResource Neumorphism.Brush.SelectionLedLens}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style x:Key="Heading" TargetType="TextBlock">
         <Setter Property="FontSize" Value="38" />
         <Setter Property="FontWeight" Value="SemiBold" />
@@ -58,27 +82,36 @@
         <Setter Property="Margin" Value="0,18,0,0" />
     </Style>
 
-    <Style x:Key="ShellInput" TargetType="TextBox">
+    <Style x:Key="Neumorphism.InputChrome" TargetType="Control">
         <Setter Property="Validation.ErrorTemplate" Value="{x:Null}" />
         <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.SurfaceContainer}" />
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.OnSurface}" />
         <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Outline}" />
-        <Setter Property="CaretBrush" Value="{DynamicResource MaterialDesign.Brush.OnSurface}" />
         <Setter Property="Padding" Value="10,0" />
         <Setter Property="MinHeight" Value="38" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="TextBox">
+                <ControlTemplate TargetType="Control">
                     <Grid>
+                        <Grid x:Name="OuterRelief" IsHitTestVisible="False" Visibility="Collapsed">
+                            <theme:ReliefLayer Kind="Highlight" CornerRadius="14" Background="{TemplateBinding Background}"
+                                               Elevation="{TemplateBinding theme:SurfaceChrome.Elevation}" />
+                            <theme:ReliefLayer Kind="Shade" CornerRadius="14" Background="{TemplateBinding Background}"
+                                               Elevation="{TemplateBinding theme:SurfaceChrome.Elevation}" />
+                        </Grid>
                         <Border x:Name="Edge" CornerRadius="14" Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" />
-                        <Border CornerRadius="13" Margin="1" IsHitTestVisible="False"
+                        <Border x:Name="Inset" CornerRadius="13" Margin="1" IsHitTestVisible="False"
                                 Background="{DynamicResource Neumorphism.Brush.InsetFill}" />
                         <ScrollViewer x:Name="PART_ContentHost" Margin="{TemplateBinding Padding}"
                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
                     </Grid>
                     <ControlTemplate.Triggers>
+                        <Trigger Property="theme:SurfaceChrome.Relief" Value="Raised">
+                            <Setter TargetName="OuterRelief" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="Inset" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
                         <Trigger Property="IsKeyboardFocused" Value="True">
                             <Setter TargetName="Edge" Property="BorderThickness" Value="2" />
                             <Setter TargetName="Edge" Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
@@ -88,12 +121,17 @@
                             <Setter TargetName="Edge" Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Error}" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="OuterRelief" Property="Visibility" Value="Collapsed" />
                             <Setter Property="Foreground" Value="{DynamicResource Neumorphism.Brush.ButtonDisabledText}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <Style x:Key="ShellInput" TargetType="TextBox" BasedOn="{StaticResource Neumorphism.InputChrome}">
+        <Setter Property="CaretBrush" Value="{DynamicResource MaterialDesign.Brush.OnSurface}" />
     </Style>
 
     <Style x:Key="GroupItem" TargetType="ListBoxItem">

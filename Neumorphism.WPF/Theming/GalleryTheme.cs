@@ -110,6 +110,24 @@ internal sealed class GalleryTheme(ResourceDictionary applicationResources)
         resources["Neumorphism.Color.Shade"] = shade;
         resources["Neumorphism.Opacity.Shade"] = shadeOpacity;
         resources["Neumorphism.Opacity.FocusGlow"] = highContrast ? 0.0 : 0.42;
+        Color ledGlow = PrimaryAt(dark ? 77 : 54);
+        var halo = new RadialGradientBrush(new GradientStopCollection
+        {
+            new(WithOpacity(ledGlow, dark ? 0.78 : 0.62), 0),
+            new(WithOpacity(ledGlow, dark ? 0.28 : 0.20), 0.46),
+            new(WithOpacity(ledGlow, 0), 1)
+        });
+        halo.Freeze();
+        resources["Neumorphism.Brush.SelectionLedGlow"] = highContrast ? Brushes.Transparent : halo;
+        resources["Neumorphism.Brush.SelectionLedLens"] = highContrast ? SystemColors.HighlightBrush
+            : MakeGradient(new Point(0, 0), new Point(1, 1), new GradientStopCollection
+            {
+                new(PrimaryAt(dark ? 96 : 88), 0),
+                new(PrimaryAt(dark ? 86 : 72), 0.37),
+                new(PrimaryAt(dark ? 69 : 49), 1)
+            });
+        resources["Neumorphism.Effect.SelectionLedShadow"] = MakeShadow(
+            shade, highContrast ? 0 : dark ? 0.90 : 0.55, 315, 1.4, 4.5);
         resources["Neumorphism.Brush.ButtonDisabledText"] = highContrast
             ? SystemColors.GrayTextBrush
             : BrushFrom(WithOpacity(_colors.OnSurfaceVariant.GetColor(scheme), 0.64));
@@ -122,6 +140,8 @@ internal sealed class GalleryTheme(ResourceDictionary applicationResources)
 
         Color NeutralAt(double value) =>
             ColorUtils.ColorFromArgb(scheme.NeutralPalette.Tone((int)Math.Clamp(Math.Round(value), 0, 100)));
+
+        Color PrimaryAt(int value) => ColorUtils.ColorFromArgb(scheme.PrimaryPalette.Tone(value));
 
         ReliefPaint[] CreateDirectionalPalette(SurfaceLightDirection direction)
         {

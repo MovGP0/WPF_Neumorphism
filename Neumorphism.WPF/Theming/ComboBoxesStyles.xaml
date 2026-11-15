@@ -10,9 +10,7 @@
                         <Border x:Name="Well" CornerRadius="8" Visibility="Collapsed"
                                 Background="{DynamicResource Neumorphism.Brush.InsetFill}"
                                 BorderBrush="{DynamicResource Neumorphism.Brush.InsetEdge}" BorderThickness="1" />
-                        <Border x:Name="SelectedMark" Width="3" Height="14" CornerRadius="1.5" Margin="5,0,0,0"
-                                HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="Collapsed"
-                                Background="{DynamicResource MaterialDesign.Brush.Primary}" />
+                        <Control x:Name="SelectedMark" Style="{StaticResource Neumorphism.SelectionLed}" Margin="5,0,0,0" />
                         <ContentPresenter Margin="14,5" VerticalAlignment="Center" />
                     </Grid>
                     <ControlTemplate.Triggers>

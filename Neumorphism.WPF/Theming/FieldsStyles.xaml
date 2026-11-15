@@ -5,31 +5,21 @@
         <Setter Property="MinHeight" Value="42" />
         <Setter Property="Padding" Value="12,0" />
     </Style>
-    <Style x:Key="Neumorphism.PasswordField" TargetType="PasswordBox">
+    <Style x:Key="Neumorphism.RaisedField" TargetType="TextBox" BasedOn="{StaticResource Neumorphism.Field}">
+        <Setter Property="theme:SurfaceChrome.Relief" Value="Raised" />
+        <Setter Property="theme:SurfaceChrome.Elevation" Value="{x:Static theme:SurfaceElevation.Level2}" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Surface}" />
+    </Style>
+
+    <Style x:Key="Neumorphism.PasswordField" TargetType="PasswordBox" BasedOn="{StaticResource Neumorphism.InputChrome}">
         <Setter Property="MinHeight" Value="42" />
-        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.OnSurface}" />
+        <Setter Property="Padding" Value="12,0" />
         <Setter Property="CaretBrush" Value="{DynamicResource MaterialDesign.Brush.OnSurface}" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="PasswordBox">
-                    <Grid>
-                        <Border x:Name="Edge" CornerRadius="14" BorderThickness="1"
-                                Background="{DynamicResource MaterialDesign.Brush.SurfaceContainer}"
-                                BorderBrush="{DynamicResource MaterialDesign.Brush.Outline}" />
-                        <Border CornerRadius="13" Margin="1" IsHitTestVisible="False" Background="{DynamicResource Neumorphism.Brush.InsetFill}" />
-                        <ScrollViewer x:Name="PART_ContentHost" Margin="12,0" VerticalAlignment="Center" />
-                    </Grid>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsKeyboardFocused" Value="True">
-                            <Setter TargetName="Edge" Property="BorderThickness" Value="2" />
-                            <Setter TargetName="Edge" Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
-                        </Trigger>
-                        <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Foreground" Value="{DynamicResource Neumorphism.Brush.ButtonDisabledText}" />
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
+    </Style>
+
+    <Style x:Key="Neumorphism.RaisedPasswordField" TargetType="PasswordBox" BasedOn="{StaticResource Neumorphism.PasswordField}">
+        <Setter Property="theme:SurfaceChrome.Relief" Value="Raised" />
+        <Setter Property="theme:SurfaceChrome.Elevation" Value="{x:Static theme:SurfaceElevation.Level2}" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Surface}" />
     </Style>
 </ResourceDictionary>

@@ -20,9 +20,8 @@
                 <ControlTemplate TargetType="ListBoxItem">
                     <Grid Background="Transparent">
                         <Border x:Name="Face" CornerRadius="14" BorderThickness="1" BorderBrush="Transparent" />
-                        <Border x:Name="Marker" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="2" Width="18"
-                                Margin="0,0,0,6" CornerRadius="1" Visibility="Collapsed"
-                                Background="{DynamicResource MaterialDesign.Brush.Primary}" />
+                        <Control x:Name="Marker" Style="{StaticResource Neumorphism.SelectionLed}" Height="3" Width="18"
+                                 HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,6" />
                         <ContentPresenter Margin="10,9,10,12" HorizontalAlignment="Center" VerticalAlignment="Center" />
                         <Control Style="{StaticResource Neumorphism.FocusOutline}"
                                  theme:SurfaceChrome.CornerRadius="{Binding CornerRadius, ElementName=Face}" />

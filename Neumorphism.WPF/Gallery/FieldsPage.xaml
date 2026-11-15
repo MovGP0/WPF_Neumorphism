@@ -1,7 +1,6 @@
 <UserControl x:Class="Neumorphism.WPF.Gallery.FieldsPage"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:theme="clr-namespace:Neumorphism.WPF.Theming"
              xmlns:gallery="clr-namespace:Neumorphism.WPF.Gallery">
     <UserControl.Resources>
         <Style TargetType="Label">
@@ -21,14 +20,44 @@
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
         <StackPanel Margin="2,12,14,24">
             <TextBlock Text="Text entry" Style="{StaticResource GallerySection}" />
-            <UniformGrid Columns="2">
-                <StackPanel Margin="0,0,16,14">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <TextBlock Text="Flat" Style="{StaticResource SupportingText}" FontWeight="SemiBold" Margin="0,0,0,12" />
+                <TextBlock Grid.Column="1" Text="Elevated" Style="{StaticResource SupportingText}" FontWeight="SemiBold" Margin="0,0,0,12" />
+                <StackPanel Grid.Row="1" Margin="0,0,16,14">
                     <Label x:Name="ProjectLabel" Content="_Project name" Target="{Binding ElementName=Project}" Padding="0,0,0,6" />
                     <TextBox x:Name="Project" Text="Studio refresh" Style="{StaticResource Neumorphism.Field}" AutomationProperties.LabeledBy="{Binding ElementName=ProjectLabel}" />
                 </StackPanel>
-                <StackPanel Margin="0,0,8,14">
+                <StackPanel Grid.Row="1" Grid.Column="1" Margin="0,0,8,14">
+                    <Label Content="Project name" Target="{Binding ElementName=ElevatedProject}" Padding="0,0,0,6" />
+                    <TextBox x:Name="ElevatedProject" Text="Studio refresh" Style="{StaticResource Neumorphism.RaisedField}"
+                             AutomationProperties.Name="Elevated project name" />
+                </StackPanel>
+                <StackPanel Grid.Row="2" Margin="0,0,16,14">
+                    <Label x:Name="PasswordLabel" Content="_Password" Target="{Binding ElementName=Secret}" Padding="0,0,0,6" />
+                    <PasswordBox x:Name="Secret" Password="example" Style="{StaticResource Neumorphism.PasswordField}" AutomationProperties.LabeledBy="{Binding ElementName=PasswordLabel}" />
+                </StackPanel>
+                <StackPanel Grid.Row="2" Grid.Column="1" Margin="0,0,8,14">
+                    <Label Content="Password" Target="{Binding ElementName=ElevatedSecret}" Padding="0,0,0,6" />
+                    <PasswordBox x:Name="ElevatedSecret" Password="example" Style="{StaticResource Neumorphism.RaisedPasswordField}"
+                                 AutomationProperties.Name="Elevated password" />
+                </StackPanel>
+                <StackPanel Grid.Row="3" Margin="0,0,16,0">
+                    <Label Content="Read-only reference" Padding="0,0,0,6" />
+                    <TextBox Text="REF-204" IsReadOnly="True" Style="{StaticResource Neumorphism.Field}" AutomationProperties.Name="Read-only reference" />
+                </StackPanel>
+                <StackPanel Grid.Row="3" Grid.Column="1" Margin="0,0,8,0">
                     <Label x:Name="MailLabel" Content="_Email address" Target="{Binding ElementName=Email}" Padding="0,0,0,6" />
-                    <TextBox x:Name="Email" Style="{StaticResource Neumorphism.Field}" AutomationProperties.LabeledBy="{Binding ElementName=MailLabel}">
+                    <TextBox x:Name="Email" Style="{StaticResource Neumorphism.RaisedField}" AutomationProperties.LabeledBy="{Binding ElementName=MailLabel}">
                         <TextBox.Text>
                             <Binding Path="Address" RelativeSource="{RelativeSource AncestorType=gallery:FieldsPage}" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules><gallery:EmailAddressRule /></Binding.ValidationRules>
@@ -37,15 +66,7 @@
                     </TextBox>
                     <TextBlock Text="Enter a valid email address." Style="{StaticResource InlineError}" />
                 </StackPanel>
-                <StackPanel Margin="0,0,16,0">
-                    <Label x:Name="PasswordLabel" Content="_Password" Target="{Binding ElementName=Secret}" Padding="0,0,0,6" />
-                    <PasswordBox x:Name="Secret" Password="example" Style="{StaticResource Neumorphism.PasswordField}" AutomationProperties.LabeledBy="{Binding ElementName=PasswordLabel}" />
-                </StackPanel>
-                <StackPanel Margin="0,0,8,0">
-                    <Label Content="Read-only reference" Padding="0,0,0,6" />
-                    <TextBox Text="REF-204" IsReadOnly="True" Style="{StaticResource Neumorphism.Field}" AutomationProperties.Name="Read-only reference" />
-                </StackPanel>
-            </UniformGrid>
+            </Grid>
             <Border Style="{StaticResource GalleryDivider}">
                 <StackPanel>
                     <TextBlock Text="Multiline" Style="{StaticResource GallerySection}" />
