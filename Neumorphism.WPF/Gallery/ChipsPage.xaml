@@ -1,0 +1,38 @@
+<UserControl x:Class="Neumorphism.WPF.Gallery.ChipsPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:theme="clr-namespace:Neumorphism.WPF.Theming"
+             xmlns:gallery="clr-namespace:Neumorphism.WPF.Gallery">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <StackPanel Margin="2,12,14,24">
+            <TextBlock Text="Assist and suggestion" Style="{StaticResource GallerySection}" />
+            <WrapPanel>
+                <Button Content="+ Add to project" AutomationProperties.Name="Add to project" Style="{StaticResource Neumorphism.Chip}" Click="Action_Click" Margin="4,4,12,4" />
+                <Button Content="Review next" Style="{StaticResource Neumorphism.SuggestionChip}" Click="Action_Click" Margin="4,4,12,4" />
+                <Button Content="Archive" Style="{StaticResource Neumorphism.SuggestionChip}" IsEnabled="False" Margin="4,4,12,4" />
+            </WrapPanel>
+            <Border Style="{StaticResource GalleryDivider}">
+                <StackPanel>
+                    <TextBlock Text="Filter" Style="{StaticResource GallerySection}" />
+                    <WrapPanel>
+                        <ToggleButton Content="Open" Style="{StaticResource Neumorphism.FilterChip}" IsChecked="True" Margin="4,4,12,4" />
+                        <ToggleButton Content="Assigned to me" Style="{StaticResource Neumorphism.FilterChip}" Margin="4,4,12,4" />
+                        <ToggleButton Content="Due this week" Style="{StaticResource Neumorphism.FilterChip}" Margin="4,4,12,4" />
+                    </WrapPanel>
+                </StackPanel>
+            </Border>
+            <Border Style="{StaticResource GalleryDivider}">
+                <StackPanel>
+                    <TextBlock Text="Input" Style="{StaticResource GallerySection}" />
+                    <WrapPanel>
+                        <Button x:Name="InputChip" Content="Design  ×" AutomationProperties.Name="Remove Design filter"
+                                Style="{StaticResource Neumorphism.Chip}" Click="Remove_Click" Margin="4,4,12,4" />
+                        <Button x:Name="RestoreChip" Content="Restore Design" Style="{StaticResource Neumorphism.SuggestionChip}"
+                                Click="Restore_Click" Margin="4,4,12,4" Visibility="Collapsed" />
+                    </WrapPanel>
+                </StackPanel>
+            </Border>
+            <TextBlock x:Name="Feedback" Style="{StaticResource SupportingText}" Margin="0,18,0,0" AutomationProperties.LiveSetting="Polite" />
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

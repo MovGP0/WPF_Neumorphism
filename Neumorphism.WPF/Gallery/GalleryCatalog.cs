@@ -1,3 +1,5 @@
+using System.Windows.Controls;
+
 namespace Neumorphism.WPF.Gallery;
 
 internal static class GalleryCatalog
@@ -30,4 +32,10 @@ internal static class GalleryCatalog
         "ToolTips",
         "Trees"
     ];
+
+    public static UserControl? CreatePage(string group) => group switch
+    {
+        "Chips" => new ChipsPage(),
+        _ => null
+    };
 }

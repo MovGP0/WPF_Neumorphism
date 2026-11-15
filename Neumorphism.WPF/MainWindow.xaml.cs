@@ -11,6 +11,7 @@ namespace Neumorphism.WPF;
 public partial class MainWindow : Window
 {
     private readonly GalleryTheme _theme;
+    private readonly Dictionary<string, UserControl> _componentPages = [];
 
     public MainWindow()
     {
@@ -60,6 +61,7 @@ public partial class MainWindow : Window
         ButtonsGallery.Visibility = group == GalleryCatalog.Buttons ? Visibility.Visible : Visibility.Collapsed;
         CardsGallery.Visibility = group == GalleryCatalog.Cards ? Visibility.Visible : Visibility.Collapsed;
         ElevationGallery.Visibility = group == GalleryCatalog.Elevation ? Visibility.Visible : Visibility.Collapsed;
+        ComponentGallery.Content = FindComponentPage(group);
         if (group is not null)
         {
             Dispatcher.InvokeAsync(() =>
@@ -71,6 +73,21 @@ public partial class MainWindow : Window
                 }
             }, DispatcherPriority.Loaded);
         }
+    }
+
+    private UserControl? FindComponentPage(string? group)
+    {
+        if (group is null)
+            return null;
+
+        if (_componentPages.TryGetValue(group, out UserControl? page))
+            return page;
+
+        page = GalleryCatalog.CreatePage(group);
+        if (page is not null)
+            _componentPages.Add(group, page);
+
+        return page;
     }
 
     private void Groups_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
