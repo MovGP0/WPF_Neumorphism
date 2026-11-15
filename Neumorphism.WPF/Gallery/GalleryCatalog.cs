@@ -40,6 +40,7 @@ internal static class GalleryCatalog
         "DataGrids" => new DataGridsPage(),
         "Expander" => new ExpanderPage(),
         "Fields" => new FieldsPage(),
+        "Group Boxes" => new GroupBoxesPage(),
         _ => null
     };
 }

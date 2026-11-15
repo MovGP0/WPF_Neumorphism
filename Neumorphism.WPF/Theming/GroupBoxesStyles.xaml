@@ -1,0 +1,41 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:theme="clr-namespace:Neumorphism.WPF.Theming">
+    <ControlTemplate x:Key="Neumorphism.GroupBoxTemplate" TargetType="GroupBox">
+        <Border CornerRadius="22" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="1" Padding="{TemplateBinding Padding}">
+            <StackPanel>
+                <ContentPresenter ContentSource="Header" RecognizesAccessKey="True" Margin="0,0,0,12"
+                                  TextElement.FontWeight="SemiBold" TextElement.FontSize="17" />
+                <ContentPresenter ContentSource="Content" />
+            </StackPanel>
+        </Border>
+    </ControlTemplate>
+    <Style x:Key="Neumorphism.GroupBox" TargetType="GroupBox">
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.OnSurface}" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Surface}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Outline}" />
+        <Setter Property="Padding" Value="18,14" />
+        <Setter Property="Template" Value="{StaticResource Neumorphism.GroupBoxTemplate}" />
+    </Style>
+    <Style x:Key="Neumorphism.InsetGroupBox" TargetType="GroupBox" BasedOn="{StaticResource Neumorphism.GroupBox}">
+        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.SurfaceContainerLow}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Neumorphism.Brush.InsetEdge}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="GroupBox">
+                    <Grid>
+                        <Border CornerRadius="22" Background="{TemplateBinding Background}" />
+                        <theme:ReliefLayer Kind="Inset" CornerRadius="22" BorderThickness="2"
+                                           Elevation="{x:Static theme:SurfaceElevation.Level2}" />
+                        <StackPanel Margin="{TemplateBinding Padding}">
+                            <ContentPresenter ContentSource="Header" RecognizesAccessKey="True" Margin="0,0,0,12"
+                                              TextElement.FontWeight="SemiBold" TextElement.FontSize="17" />
+                            <ContentPresenter ContentSource="Content" />
+                        </StackPanel>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
