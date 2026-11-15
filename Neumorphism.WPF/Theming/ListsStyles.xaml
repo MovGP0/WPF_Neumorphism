@@ -56,8 +56,8 @@
                                 HorizontalAlignment="Left" VerticalAlignment="Center" Margin="4,0,0,0"
                                 Background="{DynamicResource MaterialDesign.Brush.Primary}" />
 
-    <GridViewRowPresenter Margin="10,0,0,0" Content="{TemplateBinding Content}"
-                          Columns="{Binding View.Columns, RelativeSource={RelativeSource AncestorType=ListView}}" />
+                        <GridViewRowPresenter Margin="10,0,0,0" Content="{TemplateBinding Content}"
+                                              Columns="{Binding View.Columns, RelativeSource={RelativeSource AncestorType=ListView}}" />
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
@@ -84,6 +84,7 @@
         <Setter Property="ItemContainerStyle" Value="{StaticResource Neumorphism.ListBoxItem}" />
     </Style>
     <Style x:Key="Neumorphism.ListView" TargetType="ListView" BasedOn="{StaticResource Neumorphism.ListBox}">
+        <Setter Property="Padding" Value="0" />
         <Setter Property="ItemContainerStyle" Value="{StaticResource Neumorphism.ListViewItem}" />
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
     </Style>
@@ -94,7 +95,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="GridViewColumnHeader">
                     <Grid>
-                        <Border Padding="7,9" Background="{DynamicResource MaterialDesign.Brush.SurfaceContainer}"
+                        <Border Padding="14,9,7,9" Background="{DynamicResource MaterialDesign.Brush.SurfaceContainer}"
                                 BorderBrush="{DynamicResource MaterialDesign.Brush.OutlineVariant}" BorderThickness="0,0,0,1">
                             <ContentPresenter />
                         </Border>
