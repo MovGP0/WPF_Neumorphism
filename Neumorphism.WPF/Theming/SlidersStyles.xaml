@@ -1,0 +1,104 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:theme="clr-namespace:Neumorphism.WPF.Theming">
+    <Style x:Key="Neumorphism.SliderThumb" TargetType="Thumb">
+        <Setter Property="Width" Value="23" />
+        <Setter Property="Height" Value="23" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Thumb">
+                    <Grid Background="Transparent">
+                        <theme:ReliefLayer x:Name="Shadow" Kind="Shade" Elevation="{x:Static theme:SurfaceElevation.Level1}"
+                                           Background="{DynamicResource MaterialDesign.Brush.Surface}" CornerRadius="11.5" />
+                        <Border x:Name="Face" CornerRadius="11.5" BorderThickness="1"
+                                Background="{DynamicResource MaterialDesign.Brush.Surface}"
+                                BorderBrush="{DynamicResource MaterialDesign.Brush.Outline}" />
+                        <Border Width="6" Height="6" CornerRadius="3" Background="{DynamicResource MaterialDesign.Brush.Primary}" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Face" Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
+                        </Trigger>
+                        <Trigger Property="IsDragging" Value="True">
+                            <Setter TargetName="Shadow" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="Face" Property="Background" Value="{DynamicResource Neumorphism.Brush.InsetFill}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <ControlTemplate x:Key="Neumorphism.HorizontalSlider" TargetType="Slider">
+        <Grid Background="Transparent">
+            <Border Height="8" VerticalAlignment="Center" CornerRadius="4" Background="{DynamicResource MaterialDesign.Brush.SurfaceContainer}"
+                    BorderBrush="{DynamicResource Neumorphism.Brush.InsetEdge}" BorderThickness="1" />
+            <Track x:Name="PART_Track">
+                <Track.DecreaseRepeatButton>
+                    <RepeatButton IsTabStop="False" Focusable="False" Command="{x:Static Slider.DecreaseLarge}">
+                        <RepeatButton.Template>
+                            <ControlTemplate TargetType="RepeatButton">
+                                <Grid Background="Transparent">
+                                    <Border Height="8" VerticalAlignment="Center" CornerRadius="4" Background="{DynamicResource MaterialDesign.Brush.Primary}" />
+                                </Grid>
+                            </ControlTemplate>
+                        </RepeatButton.Template>
+                    </RepeatButton>
+                </Track.DecreaseRepeatButton>
+                <Track.Thumb>
+                    <Thumb Style="{StaticResource Neumorphism.SliderThumb}" />
+                </Track.Thumb>
+                <Track.IncreaseRepeatButton>
+                    <RepeatButton Style="{StaticResource Neumorphism.ScrollPageButton}" Command="{x:Static Slider.IncreaseLarge}" />
+                </Track.IncreaseRepeatButton>
+            </Track>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter TargetName="PART_Track" Property="Opacity" Value=".45" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <ControlTemplate x:Key="Neumorphism.VerticalSlider" TargetType="Slider">
+        <Grid Background="Transparent">
+            <Border Width="8" HorizontalAlignment="Center" CornerRadius="4" Background="{DynamicResource MaterialDesign.Brush.SurfaceContainer}"
+                    BorderBrush="{DynamicResource Neumorphism.Brush.InsetEdge}" BorderThickness="1" />
+            <Track x:Name="PART_Track">
+                <Track.DecreaseRepeatButton>
+                    <RepeatButton IsTabStop="False" Focusable="False" Command="{x:Static Slider.DecreaseLarge}">
+                        <RepeatButton.Template>
+                            <ControlTemplate TargetType="RepeatButton">
+                                <Grid Background="Transparent">
+                                    <Border Width="8" HorizontalAlignment="Center" CornerRadius="4" Background="{DynamicResource MaterialDesign.Brush.Primary}" />
+                                </Grid>
+                            </ControlTemplate>
+                        </RepeatButton.Template>
+                    </RepeatButton>
+                </Track.DecreaseRepeatButton>
+                <Track.Thumb>
+                    <Thumb Style="{StaticResource Neumorphism.SliderThumb}" />
+                </Track.Thumb>
+                <Track.IncreaseRepeatButton>
+                    <RepeatButton Style="{StaticResource Neumorphism.ScrollPageButton}" Command="{x:Static Slider.IncreaseLarge}" />
+                </Track.IncreaseRepeatButton>
+            </Track>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter TargetName="PART_Track" Property="Opacity" Value=".45" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <Style x:Key="Neumorphism.Slider" TargetType="Slider">
+        <Setter Property="Height" Value="30" />
+        <Setter Property="FocusVisualStyle" Value="{StaticResource GalleryFocus}" />
+        <Setter Property="IsMoveToPointEnabled" Value="True" />
+        <Setter Property="Template" Value="{StaticResource Neumorphism.HorizontalSlider}" />
+        <Style.Triggers>
+            <Trigger Property="Orientation" Value="Vertical">
+                <Setter Property="Height" Value="Auto" />
+                <Setter Property="Width" Value="30" />
+                <Setter Property="Template" Value="{StaticResource Neumorphism.VerticalSlider}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

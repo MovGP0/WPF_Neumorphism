@@ -1,0 +1,35 @@
+<UserControl x:Class="Neumorphism.WPF.Gallery.SlidersPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:theme="clr-namespace:Neumorphism.WPF.Theming"
+             xmlns:gallery="clr-namespace:Neumorphism.WPF.Gallery">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <StackPanel Margin="2,12,14,24">
+            <UniformGrid Columns="2">
+                <StackPanel Margin="5,0,20,0">
+                    <TextBlock x:Name="VolumeLabel" Text="Continuous" Style="{StaticResource GallerySection}" />
+                    <Slider x:Name="Volume" Minimum="0" Maximum="100" Value="36" LargeChange="10" Style="{StaticResource Neumorphism.Slider}"
+                            AutomationProperties.LabeledBy="{Binding ElementName=VolumeLabel}" />
+                    <TextBlock Text="{Binding Value, ElementName=Volume, StringFormat='Volume: {0:0}%'}" Margin="0,8,0,0" Style="{StaticResource SupportingText}" />
+                    <Border Style="{StaticResource GalleryDivider}">
+                        <StackPanel>
+                            <TextBlock x:Name="DensityLabel" Text="Discrete steps" Style="{StaticResource GallerySection}" />
+                            <Slider x:Name="Density" Minimum="1" Maximum="5" Value="3" TickFrequency="1" IsSnapToTickEnabled="True"
+                                    Style="{StaticResource Neumorphism.Slider}" AutomationProperties.LabeledBy="{Binding ElementName=DensityLabel}" />
+                            <TextBlock Text="{Binding Value, ElementName=Density, StringFormat='Density: {0:0} of 5'}"
+                                       Margin="0,8,0,0" Style="{StaticResource SupportingText}" />
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+                <StackPanel Margin="6,0,0,0">
+                    <TextBlock x:Name="HeightLabel" Text="Vertical" Style="{StaticResource GallerySection}" />
+                    <Slider x:Name="HeightSlider" Minimum="0" Maximum="100" Value="62" Height="155" Orientation="Vertical"
+                            Style="{StaticResource Neumorphism.Slider}" HorizontalAlignment="Left"
+                            AutomationProperties.LabeledBy="{Binding ElementName=HeightLabel}" />
+                    <TextBlock Text="{Binding Value, ElementName=HeightSlider, StringFormat='Height: {0:0}'}"
+                               Margin="0,10,0,0" Style="{StaticResource SupportingText}" />
+                </StackPanel>
+            </UniformGrid>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
