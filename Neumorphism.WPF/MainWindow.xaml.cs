@@ -59,6 +59,7 @@ public partial class MainWindow : Window
         NoResults.Visibility = group is null ? Visibility.Visible : Visibility.Collapsed;
         ButtonsGallery.Visibility = group == GalleryCatalog.Buttons ? Visibility.Visible : Visibility.Collapsed;
         CardsGallery.Visibility = group == GalleryCatalog.Cards ? Visibility.Visible : Visibility.Collapsed;
+        ElevationGallery.Visibility = group == GalleryCatalog.Elevation ? Visibility.Visible : Visibility.Collapsed;
         if (group is not null)
         {
             Dispatcher.InvokeAsync(() =>

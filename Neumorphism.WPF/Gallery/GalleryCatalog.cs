@@ -4,6 +4,7 @@ internal static class GalleryCatalog
 {
     public const string Buttons = "Buttons";
     public const string Cards = "Cards";
+    public const string Elevation = "Elevation";
 
     public static IReadOnlyList<string> Groups { get; } =
     [
@@ -12,7 +13,7 @@ internal static class GalleryCatalog
         "Chips",
         "ComboBoxes",
         "DataGrids",
-        "Elevation",
+        Elevation,
         "Expander",
         "Fields",
         "Group Boxes",

@@ -12,27 +12,18 @@
         <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.OutlineVariant}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="theme:SurfaceChrome.CornerRadius" Value="22" />
+        <Setter Property="theme:SurfaceChrome.Elevation" Value="{x:Static theme:SurfaceElevation.Level3}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ContentControl">
                     <Grid>
                         <Grid x:Name="OuterRelief" IsHitTestVisible="False" Visibility="Collapsed">
-                            <Border Background="{TemplateBinding Background}"
-                                    CornerRadius="{TemplateBinding theme:SurfaceChrome.CornerRadius}">
-                                <Border.Effect>
-                                    <DropShadowEffect Direction="135" ShadowDepth="4" BlurRadius="13"
-                                                      Color="{DynamicResource Neumorphism.Color.Highlight}"
-                                                      Opacity="{DynamicResource Neumorphism.Opacity.Highlight}" />
-                                </Border.Effect>
-                            </Border>
-                            <Border Background="{TemplateBinding Background}"
-                                    CornerRadius="{TemplateBinding theme:SurfaceChrome.CornerRadius}">
-                                <Border.Effect>
-                                    <DropShadowEffect Direction="315" ShadowDepth="5" BlurRadius="14"
-                                                      Color="{DynamicResource Neumorphism.Color.Shade}"
-                                                      Opacity="{DynamicResource Neumorphism.Opacity.Shade}" />
-                                </Border.Effect>
-                            </Border>
+                            <theme:ReliefLayer Kind="Highlight" Background="{TemplateBinding Background}"
+                                               CornerRadius="{TemplateBinding theme:SurfaceChrome.CornerRadius}"
+                                               Elevation="{TemplateBinding theme:SurfaceChrome.Elevation}" />
+                            <theme:ReliefLayer Kind="Shade" Background="{TemplateBinding Background}"
+                                               CornerRadius="{TemplateBinding theme:SurfaceChrome.CornerRadius}"
+                                               Elevation="{TemplateBinding theme:SurfaceChrome.Elevation}" />
                         </Grid>
                         <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
@@ -40,10 +31,9 @@
                         <Border x:Name="RaisedEdge" IsHitTestVisible="False" Visibility="Collapsed" BorderThickness="1"
                                 BorderBrush="{DynamicResource Neumorphism.Brush.RaisedEdge}"
                                 CornerRadius="{TemplateBinding theme:SurfaceChrome.CornerRadius}" />
-                        <Border x:Name="InnerRelief" IsHitTestVisible="False" Visibility="Collapsed" BorderThickness="2"
-                                BorderBrush="{DynamicResource Neumorphism.Brush.InsetEdge}"
-                                Background="{DynamicResource Neumorphism.Brush.InsetFill}"
-                                CornerRadius="{TemplateBinding theme:SurfaceChrome.CornerRadius}" />
+                        <theme:ReliefLayer x:Name="InnerRelief" Kind="Inset" Visibility="Collapsed" BorderThickness="2"
+                                           CornerRadius="{TemplateBinding theme:SurfaceChrome.CornerRadius}"
+                                           Elevation="{TemplateBinding theme:SurfaceChrome.Elevation}" />
                         <ContentPresenter Margin="{TemplateBinding Padding}"
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
@@ -55,6 +45,11 @@
                         </Trigger>
                         <Trigger Property="theme:SurfaceChrome.Relief" Value="Recessed">
                             <Setter TargetName="InnerRelief" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="theme:SurfaceChrome.Elevation" Value="{x:Static theme:SurfaceElevation.Level0}">
+                            <Setter TargetName="OuterRelief" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="RaisedEdge" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="InnerRelief" Property="Visibility" Value="Collapsed" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -77,6 +72,7 @@
 
     <Style x:Key="Neumorphism.RecessedCard" TargetType="ContentControl" BasedOn="{StaticResource Neumorphism.Card}">
         <Setter Property="theme:SurfaceChrome.Relief" Value="Recessed" />
+        <Setter Property="theme:SurfaceChrome.Elevation" Value="{x:Static theme:SurfaceElevation.Level2}" />
         <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.SurfaceContainerLow}" />
     </Style>
 </ResourceDictionary>

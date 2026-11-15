@@ -1,5 +1,6 @@
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Media.Effects;
 using MaterialColorUtilities;
 
 namespace Neumorphism.WPF.Theming;
@@ -102,11 +103,11 @@ internal sealed class GalleryTheme(ResourceDictionary applicationResources)
         double tone = _colors.Surface.GetTone(scheme);
         Color highlight = NeutralAt(tone + (dark ? 26 : 10));
         Color shade = NeutralAt(tone - (dark ? 16 : 40));
+        double highlightOpacity = highContrast ? 0.0 : dark ? 0.45 : 0.95;
+        double shadeOpacity = highContrast ? 0.0 : dark ? 0.75 : 0.37;
 
-        resources["Neumorphism.Color.Highlight"] = highlight;
         resources["Neumorphism.Color.Shade"] = shade;
-        resources["Neumorphism.Opacity.Highlight"] = highContrast ? 0.0 : dark ? 0.45 : 0.95;
-        resources["Neumorphism.Opacity.Shade"] = highContrast ? 0.0 : dark ? 0.75 : 0.37;
+        resources["Neumorphism.Opacity.Shade"] = shadeOpacity;
         resources["Neumorphism.Brush.ButtonDisabledText"] = highContrast
             ? SystemColors.GrayTextBrush
             : BrushFrom(WithOpacity(_colors.OnSurfaceVariant.GetColor(scheme), 0.64));
@@ -117,26 +118,53 @@ internal sealed class GalleryTheme(ResourceDictionary applicationResources)
                 new(WithOpacity(highlight, dark ? 0.70 : 0.94), 0),
                 new(WithOpacity(shade, dark ? 0.65 : 0.29), 1)
             });
-        resources["Neumorphism.Brush.InsetEdge"] = highContrast
-            ? SystemColors.HighlightBrush
-            : MakeGradient(new Point(1, 1), new GradientStopCollection
-            {
-                new(WithOpacity(shade, dark ? 0.72 : 0.30), 0),
-                new(Colors.Transparent, 0.52),
-                new(WithOpacity(highlight, dark ? 0.62 : 0.90), 1)
-            });
-        resources["Neumorphism.Brush.InsetFill"] = highContrast
-            ? Brushes.Transparent
-            : MakeGradient(new Point(0, 1), new GradientStopCollection
-            {
-                new(WithOpacity(shade, dark ? 0.35 : 0.19), 0),
-                new(WithOpacity(shade, 0), 0.28),
-                new(WithOpacity(highlight, 0), 0.79),
-                new(WithOpacity(highlight, dark ? 0.24 : 0.42), 1)
-            });
+        ReliefPaint[] palette = SurfaceElevation.Levels.Select(CreateReliefPaint).ToArray();
+        resources[ReliefLayer.PaletteKey] = palette;
+        resources["Neumorphism.Brush.InsetEdge"] = palette[SurfaceElevation.Level2.Level].InsetEdge;
+        resources["Neumorphism.Brush.InsetFill"] = palette[SurfaceElevation.Level2.Level].InsetFill;
 
         Color NeutralAt(double value) =>
             ColorUtils.ColorFromArgb(scheme.NeutralPalette.Tone((int)Math.Clamp(Math.Round(value), 0, 100)));
+
+        ReliefPaint CreateReliefPaint(SurfaceElevation level)
+        {
+            var lightEffect = MakeShadow(highlight, highlightOpacity, 135, level.HighlightDepth, level.HighlightBlur);
+            var shadeEffect = MakeShadow(shade, shadeOpacity, 315, level.ShadeDepth, level.ShadeBlur);
+            if (level.Level == 0)
+                return new(lightEffect, shadeEffect, Brushes.Transparent, Brushes.Transparent);
+            if (highContrast)
+                return new(lightEffect, shadeEffect, SystemColors.HighlightBrush, Brushes.Transparent);
+
+            double strength = level.InsetStrength;
+            Brush edge = MakeGradient(new Point(1, 1), new GradientStopCollection
+            {
+                new(WithOpacity(shade, Math.Min(1, strength * (dark ? 0.72 : 0.30))), 0),
+                new(Colors.Transparent, 0.52),
+                new(WithOpacity(highlight, Math.Min(1, strength * (dark ? 0.62 : 0.90))), 1)
+            });
+            Brush fill = MakeGradient(new Point(0, 1), new GradientStopCollection
+            {
+                new(WithOpacity(shade, strength * (dark ? 0.35 : 0.19)), 0),
+                new(WithOpacity(shade, 0), 0.28 * strength),
+                new(WithOpacity(highlight, 0), 1 - 0.21 * strength),
+                new(WithOpacity(highlight, strength * (dark ? 0.24 : 0.42)), 1)
+            });
+            return new(lightEffect, shadeEffect, edge, fill);
+        }
+    }
+
+    private static DropShadowEffect MakeShadow(Color color, double opacity, double direction, double depth, double blur)
+    {
+        DropShadowEffect effect = new()
+        {
+            Color = color,
+            Opacity = opacity,
+            Direction = direction,
+            ShadowDepth = depth,
+            BlurRadius = blur
+        };
+        effect.Freeze();
+        return effect;
     }
 
     private static Color WithOpacity(Color color, double opacity) =>

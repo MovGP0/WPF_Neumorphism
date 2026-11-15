@@ -81,6 +81,7 @@
                                Margin="0,16,0,0" Style="{StaticResource SupportingText}" Visibility="Collapsed" />
                     <gallery:ButtonsPage x:Name="ButtonsGallery" Grid.Row="1" Visibility="Collapsed" />
                     <gallery:CardsPage x:Name="CardsGallery" Grid.Row="1" Visibility="Collapsed" />
+                    <gallery:ElevationPage x:Name="ElevationGallery" Grid.Row="1" Visibility="Collapsed" />
                 </Grid>
 
                 <local:PaletteEditor x:Name="Palette" Visibility="Collapsed" ThemeChanged="Palette_ThemeChanged" />
