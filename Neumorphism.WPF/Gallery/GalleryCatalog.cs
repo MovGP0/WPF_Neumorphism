@@ -47,6 +47,7 @@ internal static class GalleryCatalog
         "Navigation Rail" => new NavigationRailPage(),
         "Pickers" => new PickersPage(),
         "Progress Indicators" => new ProgressIndicatorsPage(),
+        "Rating Bar" => new RatingBarPage(),
         _ => null
     };
 }

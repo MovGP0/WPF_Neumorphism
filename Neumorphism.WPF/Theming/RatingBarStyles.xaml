@@ -1,0 +1,62 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:theme="clr-namespace:Neumorphism.WPF.Theming">
+    <theme:RatingFillConverter x:Key="Neumorphism.RatingFill" />
+    <DataTemplate x:Key="Neumorphism.RatingStar">
+        <Path Width="24" Height="24" Stretch="Uniform" StrokeThickness="1.5"
+              Data="M 12,1 L 15.4,8.4 23.5,9.4 17.5,15 19,23 12,19.1 5,23 6.5,15 0.5,9.4 8.6,8.4 Z">
+            <Path.Style>
+                <Style TargetType="Path">
+                    <Setter Property="Stroke" Value="{DynamicResource MaterialDesign.Brush.Outline}" />
+                    <Setter Property="Fill" Value="Transparent" />
+                    <Style.Triggers>
+                        <DataTrigger Value="True">
+                            <DataTrigger.Binding>
+                                <MultiBinding Converter="{StaticResource Neumorphism.RatingFill}">
+                                    <Binding />
+                                    <Binding Path="SelectedIndex" RelativeSource="{RelativeSource AncestorType=ListBox}" />
+                                </MultiBinding>
+                            </DataTrigger.Binding>
+                            <Setter Property="Stroke" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
+                            <Setter Property="Fill" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Path.Style>
+        </Path>
+    </DataTemplate>
+    <Style x:Key="Neumorphism.RatingItem" TargetType="ListBoxItem">
+        <Setter Property="AutomationProperties.Name" Value="{Binding StringFormat='Rate {0} out of 5'}" />
+        <Setter Property="FocusVisualStyle" Value="{StaticResource GalleryFocus}" />
+        <Setter Property="Margin" Value="3" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListBoxItem">
+                    <Grid Width="44" Height="44" Background="Transparent">
+                        <Border x:Name="Face" CornerRadius="13" BorderBrush="Transparent" BorderThickness="1" />
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Face" Property="Background" Value="{DynamicResource Neumorphism.Brush.InsetFill}" />
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="Face" Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Outline}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="Neumorphism.RatingBar" TargetType="ListBox">
+        <Setter Property="Padding" Value="4" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
+        <Setter Property="ItemTemplate" Value="{StaticResource Neumorphism.RatingStar}" />
+        <Setter Property="ItemContainerStyle" Value="{StaticResource Neumorphism.RatingItem}" />
+        <Setter Property="ItemsPanel">
+            <Setter.Value><ItemsPanelTemplate><StackPanel Orientation="Horizontal" /></ItemsPanelTemplate></Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
