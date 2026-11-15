@@ -63,6 +63,8 @@ internal sealed class GalleryTheme(ResourceDictionary applicationResources)
         if (highContrast)
             ApplySystemColors(resources);
 
+        AddButtonColors(resources, scheme, dark, highContrast);
+
         var dictionaries = applicationResources.MergedDictionaries;
         if (_activeResources is null)
             dictionaries.Add(resources);
@@ -94,6 +96,58 @@ internal sealed class GalleryTheme(ResourceDictionary applicationResources)
     }
 
     public static string Hex(Color color) => $"#{color.R:X2}{color.G:X2}{color.B:X2}";
+
+    private void AddButtonColors(ResourceDictionary resources, DynamicScheme scheme, bool dark, bool highContrast)
+    {
+        double tone = _colors.Surface.GetTone(scheme);
+        Color highlight = NeutralAt(tone + (dark ? 26 : 10));
+        Color shade = NeutralAt(tone - (dark ? 16 : 40));
+
+        resources["Neumorphism.Color.ButtonHighlight"] = highlight;
+        resources["Neumorphism.Color.ButtonShade"] = shade;
+        resources["Neumorphism.Opacity.ButtonHighlight"] = highContrast ? 0.0 : dark ? 0.45 : 0.95;
+        resources["Neumorphism.Opacity.ButtonShade"] = highContrast ? 0.0 : dark ? 0.75 : 0.37;
+        resources["Neumorphism.Brush.ButtonDisabledText"] = highContrast
+            ? SystemColors.GrayTextBrush
+            : BrushFrom(WithOpacity(_colors.OnSurfaceVariant.GetColor(scheme), 0.64));
+        resources["Neumorphism.Brush.ButtonRaisedEdge"] = highContrast
+            ? SystemColors.WindowTextBrush
+            : MakeGradient(new Point(1, 1), new GradientStopCollection
+            {
+                new(WithOpacity(highlight, dark ? 0.70 : 0.94), 0),
+                new(WithOpacity(shade, dark ? 0.65 : 0.29), 1)
+            });
+        resources["Neumorphism.Brush.ButtonInsetEdge"] = highContrast
+            ? SystemColors.HighlightBrush
+            : MakeGradient(new Point(1, 1), new GradientStopCollection
+            {
+                new(WithOpacity(shade, dark ? 0.72 : 0.30), 0),
+                new(Colors.Transparent, 0.52),
+                new(WithOpacity(highlight, dark ? 0.62 : 0.90), 1)
+            });
+        resources["Neumorphism.Brush.ButtonInsetFill"] = highContrast
+            ? Brushes.Transparent
+            : MakeGradient(new Point(0, 1), new GradientStopCollection
+            {
+                new(WithOpacity(shade, dark ? 0.35 : 0.19), 0),
+                new(WithOpacity(shade, 0), 0.28),
+                new(WithOpacity(highlight, 0), 0.79),
+                new(WithOpacity(highlight, dark ? 0.24 : 0.42), 1)
+            });
+
+        Color NeutralAt(double value) =>
+            ColorUtils.ColorFromArgb(scheme.NeutralPalette.Tone((int)Math.Clamp(Math.Round(value), 0, 100)));
+    }
+
+    private static Color WithOpacity(Color color, double opacity) =>
+        Color.FromArgb((byte)Math.Round(opacity * byte.MaxValue), color.R, color.G, color.B);
+
+    private static LinearGradientBrush MakeGradient(Point endPoint, GradientStopCollection stops)
+    {
+        LinearGradientBrush brush = new(stops, new Point(0, 0), endPoint);
+        brush.Freeze();
+        return brush;
+    }
 
     private static SolidColorBrush BrushFrom(Color color)
     {

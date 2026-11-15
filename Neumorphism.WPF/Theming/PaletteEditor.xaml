@@ -17,7 +17,7 @@
                         <TextBox x:Name="SeedInput" Width="112" MaxLength="7" Style="{StaticResource ShellInput}"
                                  AutomationProperties.LabeledBy="{Binding ElementName=SeedLabel}"
                                  KeyDown="SeedInput_KeyDown" TextChanged="SeedInput_TextChanged" />
-                        <Button Content="_Apply" Style="{StaticResource ShellButton}" Margin="8,0,16,0"
+                        <Button Content="_Apply" Style="{StaticResource Neumorphism.AccentButton}" Margin="8,0,16,0"
                                 Click="ApplySeed_Click" />
                         <ItemsControl x:Name="Presets">
                             <ItemsControl.ItemsPanel>
@@ -27,8 +27,8 @@
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Button Content="{Binding Name}" Style="{StaticResource ShellButton}"
-                                            ToolTip="{Binding Hex}" Margin="0,0,6,0" Click="Preset_Click" />
+                                    <Button Content="{Binding Name}" Background="{DynamicResource MaterialDesign.Brush.SurfaceContainerLow}"
+                                            ToolTip="{Binding Hex}" Margin="0,0,10,6" Click="Preset_Click" />
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>

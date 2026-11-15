@@ -1,0 +1,201 @@
+<UserControl x:Class="Neumorphism.WPF.Gallery.ButtonsPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             ButtonBase.Click="DemoButton_Click">
+    <UserControl.Resources>
+        <Style x:Key="SpecimenHeading" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="17" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="0,0,16,0" />
+            <Setter Property="AutomationProperties.HeadingLevel" Value="Level2" />
+        </Style>
+        <Style x:Key="SpecimenRow" TargetType="Border">
+            <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.OutlineVariant}" />
+            <Setter Property="BorderThickness" Value="0,0,0,1" />
+            <Setter Property="Padding" Value="0,16,0,16" />
+        </Style>
+        <Style x:Key="Glyph" TargetType="Path">
+            <Setter Property="Stroke" Value="{Binding Foreground, RelativeSource={RelativeSource AncestorType=ButtonBase}}" />
+            <Setter Property="StrokeThickness" Value="1.7" />
+            <Setter Property="StrokeStartLineCap" Value="Round" />
+            <Setter Property="StrokeEndLineCap" Value="Round" />
+            <Setter Property="StrokeLineJoin" Value="Round" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+        <StreamGeometry x:Key="Plus">M 2,9 H 16 M 9,2 V 16</StreamGeometry>
+        <StreamGeometry x:Key="Chevron">M 1,1 L 6,6 11,1</StreamGeometry>
+        <Style x:Key="MenuChevron" TargetType="Path" BasedOn="{StaticResource Glyph}">
+            <Setter Property="Data" Value="{StaticResource Chevron}" />
+            <Setter Property="RenderTransformOrigin" Value="0.5,0.5" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ContextMenu.IsOpen, RelativeSource={RelativeSource AncestorType=Button}}" Value="True">
+                    <Setter Property="RenderTransform">
+                        <Setter.Value>
+                            <RotateTransform Angle="180" />
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="SampleMenu" TargetType="ContextMenu">
+            <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.SurfaceContainerLow}" />
+            <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.OnSurface}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.OutlineVariant}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Padding" Value="6" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="HorizontalOffset" Value="-12" />
+            <Setter Property="UseLayoutRounding" Value="True" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ContextMenu">
+                        <Grid Margin="12,8,12,14" MinWidth="176">
+                            <Border Background="{TemplateBinding Background}" CornerRadius="14" IsHitTestVisible="False">
+                                <Border.Effect>
+                                    <DropShadowEffect Direction="315" ShadowDepth="5" BlurRadius="14"
+                                                      Color="{DynamicResource Neumorphism.Color.ButtonShade}"
+                                                      Opacity="{DynamicResource Neumorphism.Opacity.ButtonShade}" />
+                                </Border.Effect>
+                            </Border>
+                            <Border Background="{TemplateBinding Background}" CornerRadius="14"
+                                    BorderBrush="{DynamicResource Neumorphism.Brush.ButtonRaisedEdge}"
+                                    BorderThickness="{TemplateBinding BorderThickness}" IsHitTestVisible="False" />
+                            <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
+                                    Padding="{TemplateBinding Padding}" CornerRadius="14">
+                                <ItemsPresenter KeyboardNavigation.DirectionalNavigation="Cycle" />
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="SampleMenuItem" TargetType="MenuItem">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.OnSurface}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="MenuItem">
+                        <Border x:Name="Row" Background="Transparent" Padding="12,8" CornerRadius="9" MinHeight="40">
+                            <Grid>
+                                <ContentPresenter ContentSource="Header" RecognizesAccessKey="True"
+                                                  VerticalAlignment="Center" />
+                                <Border x:Name="Marker" Width="3" Height="14" CornerRadius="1.5" Margin="-6,0,0,0"
+                                        HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="Collapsed"
+                                        Background="{DynamicResource MaterialDesign.Brush.OnPrimaryContainer}" />
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsHighlighted" Value="True">
+                                <Setter TargetName="Row" Property="Background" Value="{DynamicResource MaterialDesign.Brush.PrimaryContainer}" />
+                                <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.OnPrimaryContainer}" />
+                                <Setter TargetName="Marker" Property="Visibility" Value="Visible" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <StackPanel Margin="0,8,12,16">
+            <TextBlock x:Name="Feedback" Text="Choose a button to see its action."
+                       Style="{StaticResource SupportingText}" Margin="0,0,0,16"
+                       AutomationProperties.LiveSetting="Polite" />
+            <Border Style="{StaticResource SpecimenRow}" BorderThickness="0,1,0,1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="132" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Push buttons" Style="{StaticResource SpecimenHeading}" />
+                    <WrapPanel Grid.Column="1" Margin="4,-6,0,-6">
+                        <Button x:Name="RaisedExample" Content="Raised" Margin="0,6,12,6" />
+                        <Button x:Name="AccentExample" Content="Accent" Style="{StaticResource Neumorphism.AccentButton}" Margin="0,6,12,6" />
+                        <Button Content="Recessed" Style="{StaticResource Neumorphism.RecessedButton}" Margin="0,6,12,6" />
+                        <Button Content="Outline" Style="{StaticResource Neumorphism.OutlineButton}" Margin="0,6,12,6" />
+                        <Button Content="Text" Style="{StaticResource Neumorphism.TextButton}" Margin="0,6,4,6" />
+                    </WrapPanel>
+                </Grid>
+            </Border>
+            <Border Style="{StaticResource SpecimenRow}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="132" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Icon actions" Style="{StaticResource SpecimenHeading}" />
+                    <WrapPanel Grid.Column="1" Margin="4,-6,0,-6">
+                        <Button Style="{StaticResource Neumorphism.IconButton}" Margin="0,12,16,6"
+                                ToolTip="Favorite" AutomationProperties.Name="Favorite">
+                            <Path Style="{StaticResource Glyph}" Data="M 10,16 L 3,9 C -2,4 4,-1 10,5 C 16,-1 22,4 17,9 Z" />
+                        </Button>
+                        <Button Style="{StaticResource Neumorphism.FloatingButton}" Margin="0,6,16,6"
+                                ToolTip="Add item" AutomationProperties.Name="Add item">
+                            <Path Style="{StaticResource Glyph}" Data="{StaticResource Plus}" />
+                        </Button>
+                        <Button Style="{StaticResource Neumorphism.FloatingButton}" Margin="0,6,8,6"
+                                AutomationProperties.Name="New entry">
+                            <StackPanel Orientation="Horizontal">
+                                <Path Style="{StaticResource Glyph}" Data="{StaticResource Plus}" Margin="0,0,8,0" />
+                                <TextBlock Text="New entry" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Button>
+                    </WrapPanel>
+                </Grid>
+            </Border>
+            <Border Style="{StaticResource SpecimenRow}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="132" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Menu buttons" Style="{StaticResource SpecimenHeading}" />
+                    <WrapPanel Grid.Column="1" Margin="4,-6,0,-6">
+                        <Button x:Name="OptionsButton" Margin="0,6,16,6" AutomationProperties.Name="Options">
+                            <Button.ContextMenu>
+                                <ContextMenu Style="{StaticResource SampleMenu}">
+                                    <MenuItem Header="_Rename" Style="{StaticResource SampleMenuItem}" Click="DemoMenuItem_Click" />
+                                    <MenuItem Header="_Duplicate" Style="{StaticResource SampleMenuItem}" Click="DemoMenuItem_Click" />
+                                </ContextMenu>
+                            </Button.ContextMenu>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Options" />
+                                <Path Style="{StaticResource MenuChevron}" Margin="9,0,0,0" />
+                            </StackPanel>
+                        </Button>
+                        <StackPanel x:Name="SaveSplit" Orientation="Horizontal" Margin="0,6,8,6">
+                            <Button Content="Save" Style="{StaticResource Neumorphism.SplitAction}" />
+                            <Button x:Name="SaveMenuButton" Style="{StaticResource Neumorphism.SplitMenu}"
+                                    AutomationProperties.Name="More save options" ToolTip="More save options">
+                                <Button.ContextMenu>
+                                    <ContextMenu Style="{StaticResource SampleMenu}">
+                                        <MenuItem Header="Save _as" Style="{StaticResource SampleMenuItem}" Click="DemoMenuItem_Click" />
+                                        <MenuItem Header="Save a _copy" Style="{StaticResource SampleMenuItem}" Click="DemoMenuItem_Click" />
+                                    </ContextMenu>
+                                </Button.ContextMenu>
+                                <Path Style="{StaticResource MenuChevron}" />
+                            </Button>
+                        </StackPanel>
+                    </WrapPanel>
+                </Grid>
+            </Border>
+            <Border Style="{StaticResource SpecimenRow}" BorderThickness="0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="132" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="States" Style="{StaticResource SpecimenHeading}" />
+                    <WrapPanel Grid.Column="1" Margin="4,-6,0,-6">
+                        <ToggleButton x:Name="ToggleExample" Content="Toggle" Margin="0,6,16,6"
+                                      IsChecked="True" Checked="DemoToggle_Changed" Unchecked="DemoToggle_Changed" />
+                        <Button x:Name="DisabledExample" Content="Disabled" IsEnabled="False" Margin="0,6,8,6" />
+                    </WrapPanel>
+                </Grid>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

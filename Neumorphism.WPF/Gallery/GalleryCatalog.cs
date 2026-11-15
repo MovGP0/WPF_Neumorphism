@@ -2,9 +2,11 @@ namespace Neumorphism.WPF.Gallery;
 
 internal static class GalleryCatalog
 {
+    public const string Buttons = "Buttons";
+
     public static IReadOnlyList<string> Groups { get; } =
     [
-        "Buttons",
+        Buttons,
         "Cards",
         "Chips",
         "ComboBoxes",

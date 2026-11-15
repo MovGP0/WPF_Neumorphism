@@ -1,0 +1,158 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:theme="clr-namespace:Neumorphism.WPF.Theming">
+    <Style x:Key="Neumorphism.ButtonBase" TargetType="ButtonBase">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Surface}" />
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.OnSurface}" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Padding" Value="16,8" />
+        <Setter Property="MinHeight" Value="42" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="KeyboardNavigation.AcceptsReturn" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ButtonBase">
+                    <Grid Background="Transparent" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                        <Grid x:Name="OuterRelief" IsHitTestVisible="False" Visibility="Collapsed">
+                            <Border x:Name="HighlightSilhouette" Background="{TemplateBinding Background}"
+                                    CornerRadius="{TemplateBinding theme:ButtonChrome.CornerRadius}">
+                                <Border.Effect>
+                                    <DropShadowEffect Direction="135" ShadowDepth="3" BlurRadius="9"
+                                                      Color="{DynamicResource Neumorphism.Color.ButtonHighlight}"
+                                                      Opacity="{DynamicResource Neumorphism.Opacity.ButtonHighlight}" />
+                                </Border.Effect>
+                            </Border>
+                            <Border x:Name="ShadeSilhouette" Background="{TemplateBinding Background}"
+                                    CornerRadius="{TemplateBinding theme:ButtonChrome.CornerRadius}">
+                                <Border.Effect>
+                                    <DropShadowEffect Direction="315" ShadowDepth="4" BlurRadius="10"
+                                                      Color="{DynamicResource Neumorphism.Color.ButtonShade}"
+                                                      Opacity="{DynamicResource Neumorphism.Opacity.ButtonShade}" />
+                                </Border.Effect>
+                            </Border>
+                        </Grid>
+                        <Border x:Name="Face" Background="{TemplateBinding Background}"
+                                CornerRadius="{TemplateBinding theme:ButtonChrome.CornerRadius}" />
+                        <Border x:Name="RaisedEdge" IsHitTestVisible="False" Visibility="Collapsed" BorderThickness="1"
+                                CornerRadius="{TemplateBinding theme:ButtonChrome.CornerRadius}"
+                                BorderBrush="{DynamicResource Neumorphism.Brush.ButtonRaisedEdge}" />
+                        <Border x:Name="InnerRelief" IsHitTestVisible="False" Visibility="Collapsed"
+                                CornerRadius="{TemplateBinding theme:ButtonChrome.CornerRadius}"
+                                BorderThickness="2" BorderBrush="{DynamicResource Neumorphism.Brush.ButtonInsetEdge}"
+                                Background="{DynamicResource Neumorphism.Brush.ButtonInsetFill}" />
+                        <Border x:Name="Outline" IsHitTestVisible="False" BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                CornerRadius="{TemplateBinding theme:ButtonChrome.CornerRadius}" />
+                        <ContentPresenter x:Name="Label" Margin="{TemplateBinding Padding}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          RecognizesAccessKey="True" />
+                        <Border x:Name="FocusRing" IsHitTestVisible="False" Visibility="Collapsed" Margin="-4"
+                                BorderBrush="{DynamicResource MaterialDesign.Brush.Primary}" BorderThickness="2"
+                                CornerRadius="{TemplateBinding theme:ButtonChrome.CornerRadius}" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="theme:ButtonChrome.Relief" Value="Raised">
+                            <Setter TargetName="OuterRelief" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="RaisedEdge" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="theme:ButtonChrome.Relief" Value="Recessed">
+                            <Setter TargetName="InnerRelief" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Outline" Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Outline}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="OuterRelief" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="RaisedEdge" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="InnerRelief" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="Outline" Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
+                        </Trigger>
+                        <DataTrigger Binding="{Binding ContextMenu.IsOpen, RelativeSource={RelativeSource Self}}" Value="True">
+                            <Setter TargetName="OuterRelief" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="RaisedEdge" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="InnerRelief" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="Outline" Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
+                        </DataTrigger>
+                        <Trigger Property="IsKeyboardFocused" Value="True">
+                            <Setter TargetName="FocusRing" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="OuterRelief" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="RaisedEdge" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="InnerRelief" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="Face" Property="Background" Value="{DynamicResource MaterialDesign.Brush.SurfaceContainer}" />
+                            <Setter TargetName="Outline" Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.OutlineVariant}" />
+                            <Setter Property="Foreground" Value="{DynamicResource Neumorphism.Brush.ButtonDisabledText}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Button" BasedOn="{StaticResource Neumorphism.ButtonBase}" />
+
+    <Style TargetType="ToggleButton" BasedOn="{StaticResource Neumorphism.ButtonBase}">
+        <Style.Triggers>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="theme:ButtonChrome.Relief" Value="Recessed" />
+                <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.SurfaceContainer}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
+                <Setter Property="BorderThickness" Value="2" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="Neumorphism.AccentButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.OnPrimary}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
+    </Style>
+
+    <Style x:Key="Neumorphism.RecessedButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="theme:ButtonChrome.Relief" Value="Recessed" />
+        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.SurfaceContainer}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.OutlineVariant}" />
+    </Style>
+
+    <Style x:Key="Neumorphism.OutlineButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="theme:ButtonChrome.Relief" Value="Flat" />
+        <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Outline}" />
+    </Style>
+
+    <Style x:Key="Neumorphism.TextButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="theme:ButtonChrome.Relief" Value="Flat" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
+    </Style>
+
+    <Style x:Key="Neumorphism.IconButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="Width" Value="44" />
+        <Setter Property="Height" Value="44" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="theme:ButtonChrome.CornerRadius" Value="22" />
+    </Style>
+
+    <Style x:Key="Neumorphism.FloatingButton" TargetType="Button" BasedOn="{StaticResource Neumorphism.AccentButton}">
+        <Setter Property="MinWidth" Value="56" />
+        <Setter Property="Height" Value="56" />
+        <Setter Property="theme:ButtonChrome.CornerRadius" Value="18" />
+    </Style>
+
+    <Style x:Key="Neumorphism.SplitAction" TargetType="Button" BasedOn="{StaticResource Neumorphism.OutlineButton}">
+        <Setter Property="theme:ButtonChrome.CornerRadius" Value="14,0,0,14" />
+    </Style>
+
+    <Style x:Key="Neumorphism.SplitMenu" TargetType="Button" BasedOn="{StaticResource Neumorphism.OutlineButton}">
+        <Setter Property="theme:ButtonChrome.CornerRadius" Value="0,14,14,0" />
+        <Setter Property="Width" Value="44" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Margin" Value="-1,0,0,0" />
+    </Style>
+</ResourceDictionary>

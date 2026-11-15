@@ -57,6 +57,7 @@ public partial class MainWindow : Window
         var group = Groups.SelectedItem as string;
         GroupHeading.Text = group ?? "Search results";
         NoResults.Visibility = group is null ? Visibility.Visible : Visibility.Collapsed;
+        ButtonsGallery.Visibility = group == GalleryCatalog.Buttons ? Visibility.Visible : Visibility.Collapsed;
         if (group is not null)
         {
             Dispatcher.InvokeAsync(() =>

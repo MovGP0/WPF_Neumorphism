@@ -22,55 +22,6 @@
         <Setter Property="TextWrapping" Value="Wrap" />
     </Style>
 
-    <Style x:Key="ShellAction" TargetType="ButtonBase">
-        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.SurfaceContainerLow}" />
-        <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.OnSurface}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Outline}" />
-        <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="Padding" Value="14,7" />
-        <Setter Property="MinHeight" Value="38" />
-        <Setter Property="FontWeight" Value="SemiBold" />
-        <Setter Property="FocusVisualStyle" Value="{StaticResource GalleryFocus}" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="ButtonBase">
-                    <Border x:Name="Face" Padding="{TemplateBinding Padding}" CornerRadius="14"
-                            Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"
-                                          RecognizesAccessKey="True" />
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="Face" Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
-                            <Setter TargetName="Face" Property="BorderThickness" Value="2" />
-                            <Setter TargetName="Face" Property="Padding" Value="13,6" />
-                        </Trigger>
-                        <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="Face" Property="Background" Value="{DynamicResource MaterialDesign.Brush.SurfaceContainerHigh}" />
-                            <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.OnSurface}" />
-                        </Trigger>
-                        <Trigger Property="IsEnabled" Value="False">
-                            <Setter TargetName="Face" Property="Opacity" Value="0.55" />
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
-    <Style x:Key="ShellButton" TargetType="Button" BasedOn="{StaticResource ShellAction}" />
-
-    <Style x:Key="ShellToggle" TargetType="ToggleButton" BasedOn="{StaticResource ShellAction}">
-        <Style.Triggers>
-            <Trigger Property="IsChecked" Value="True">
-                <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.PrimaryContainer}" />
-                <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.OnPrimaryContainer}" />
-                <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesign.Brush.Primary}" />
-            </Trigger>
-        </Style.Triggers>
-    </Style>
-
     <Style x:Key="ShellInput" TargetType="TextBox">
         <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.SurfaceContainer}" />
         <Setter Property="Foreground" Value="{DynamicResource MaterialDesign.Brush.OnSurface}" />
