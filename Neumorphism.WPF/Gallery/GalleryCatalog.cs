@@ -52,6 +52,7 @@ internal static class GalleryCatalog
         "Snackbar" => new SnackbarPage(),
         "Toggles" => new TogglesPage(),
         "ToolTips" => new ToolTipsPage(),
+        "Trees" => new TreesPage(),
         _ => null
     };
 }

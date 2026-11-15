@@ -26,6 +26,7 @@
                 <ResourceDictionary Source="Theming/SnackbarStyles.xaml" />
                 <ResourceDictionary Source="Theming/TogglesStyles.xaml" />
                 <ResourceDictionary Source="Theming/ToolTipsStyles.xaml" />
+                <ResourceDictionary Source="Theming/TreesStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

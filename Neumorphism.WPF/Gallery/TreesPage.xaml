@@ -1,0 +1,35 @@
+<UserControl x:Class="Neumorphism.WPF.Gallery.TreesPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:theme="clr-namespace:Neumorphism.WPF.Theming"
+             xmlns:gallery="clr-namespace:Neumorphism.WPF.Gallery">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <StackPanel Margin="2,12,14,24">
+            <TextBlock Text="Workspace files" Style="{StaticResource GallerySection}" />
+            <ContentControl Style="{StaticResource Neumorphism.ListSurface}" MaxWidth="620" HorizontalAlignment="Stretch" Margin="4,4,12,12">
+                <TreeView x:Name="FolderTree" Style="{StaticResource Neumorphism.TreeView}" AutomationProperties.Name="Workspace files" MaxHeight="400">
+                    <TreeView.Resources>
+                        <Style TargetType="TreeViewItem" BasedOn="{StaticResource Neumorphism.TreeItem}" />
+                    </TreeView.Resources>
+                    <TreeViewItem Header="Project" IsExpanded="True">
+                        <TreeViewItem Header="Design" IsExpanded="True">
+                            <TreeViewItem Header="Color roles" IsSelected="True" />
+                            <TreeViewItem Header="Component samples" />
+                        </TreeViewItem>
+                        <TreeViewItem Header="Research">
+                            <TreeViewItem Header="Review notes" />
+                            <TreeViewItem Header="Reference links" />
+                        </TreeViewItem>
+                    </TreeViewItem>
+                    <TreeViewItem Header="Shared assets">
+                        <TreeViewItem Header="Icons" />
+                        <TreeViewItem Header="Fonts" />
+                    </TreeViewItem>
+                    <TreeViewItem Header="Archive" IsEnabled="False" />
+                </TreeView>
+            </ContentControl>
+            <TextBlock Text="{Binding SelectedItem.Header, ElementName=FolderTree, StringFormat='Selected: {0}'}"
+                       Style="{StaticResource SupportingText}" Margin="4,2,0,0" />
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
