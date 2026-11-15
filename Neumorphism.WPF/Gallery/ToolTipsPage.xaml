@@ -1,0 +1,20 @@
+<UserControl x:Class="Neumorphism.WPF.Gallery.ToolTipsPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:theme="clr-namespace:Neumorphism.WPF.Theming"
+             xmlns:gallery="clr-namespace:Neumorphism.WPF.Gallery">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <StackPanel Margin="2,12,14,24">
+            <TextBlock Text="Tooltips on hover or focus" Style="{StaticResource GallerySection}" />
+            <WrapPanel>
+                <Button x:Name="Refresh" Content="↻" AutomationProperties.Name="Refresh preview" Style="{StaticResource Neumorphism.IconButton}"
+                        ToolTip="Refresh the preview." Click="Refresh_Click" Margin="5,4,15,4" />
+                <Button Content="Export" IsEnabled="False" ToolTipService.ShowOnDisabled="True"
+                        ToolTip="Complete the review before exporting." Margin="5,4,15,4" />
+                <Button Content="Keyboard hint" Style="{StaticResource Neumorphism.OutlineButton}" ToolTipService.ShowsToolTipOnKeyboardFocus="True"
+                        ToolTip="Press Tab to move focus. Press Space to activate a button." Click="Hint_Click" Margin="5,4,15,4" />
+            </WrapPanel>
+            <TextBlock x:Name="Feedback" Margin="0,16,0,0" Style="{StaticResource SupportingText}" AutomationProperties.LiveSetting="Polite" />
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
