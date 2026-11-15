@@ -37,6 +37,7 @@ internal static class GalleryCatalog
     {
         "Chips" => new ChipsPage(),
         "ComboBoxes" => new ComboBoxesPage(),
+        "DataGrids" => new DataGridsPage(),
         _ => null
     };
 }

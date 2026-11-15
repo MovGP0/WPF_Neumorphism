@@ -1,0 +1,31 @@
+<UserControl x:Class="Neumorphism.WPF.Gallery.DataGridsPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:theme="clr-namespace:Neumorphism.WPF.Theming"
+             xmlns:gallery="clr-namespace:Neumorphism.WPF.Gallery">
+    <UserControl.Resources>
+        <Style x:Key="CellEditor" TargetType="TextBox" BasedOn="{StaticResource ShellInput}">
+            <Setter Property="MinHeight" Value="31" />
+            <Setter Property="Padding" Value="7,0" />
+        </Style>
+    </UserControl.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <StackPanel Margin="2,12,14,24">
+            <TextBlock x:Name="TableLabel" Text="Editable project queue" Style="{StaticResource GallerySection}" />
+            <TextBlock Text="Select a column header to sort. Press F2 on a cell to edit it." Style="{StaticResource SupportingText}" Margin="0,0,0,14" />
+            <ContentControl x:Name="GridSurface" Style="{StaticResource Neumorphism.RaisedCard}" Padding="0" Margin="5,4,12,12">
+                <theme:RoundedViewport Radius="22">
+                    <DataGrid x:Name="Queue" Style="{StaticResource Neumorphism.DataGrid}" AutomationProperties.LabeledBy="{Binding ElementName=TableLabel}"
+                              MaxHeight="360" AutoGenerateColumns="False" CanUserAddRows="False" SelectionUnit="CellOrRowHeader">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Task" Binding="{Binding Task}" Width="2*" EditingElementStyle="{StaticResource CellEditor}" />
+                            <DataGridTextColumn Header="Owner" Binding="{Binding Owner}" Width="*" EditingElementStyle="{StaticResource CellEditor}" />
+                            <DataGridTextColumn Header="State" Binding="{Binding State}" Width="*" EditingElementStyle="{StaticResource CellEditor}" />
+                            <DataGridTextColumn Header="Hours" Binding="{Binding Hours, ValidatesOnExceptions=True}" Width="76" EditingElementStyle="{StaticResource CellEditor}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </theme:RoundedViewport>
+            </ContentControl>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

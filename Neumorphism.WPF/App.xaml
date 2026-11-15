@@ -11,6 +11,7 @@
                 <ResourceDictionary Source="Theming/ScrollBarStyles.xaml" />
                 <ResourceDictionary Source="Theming/ChipsStyles.xaml" />
                 <ResourceDictionary Source="Theming/ComboBoxesStyles.xaml" />
+                <ResourceDictionary Source="Theming/DataGridsStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
