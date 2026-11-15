@@ -65,6 +65,7 @@ internal sealed class GalleryTheme(ResourceDictionary applicationResources)
             ApplySystemColors(resources);
 
         AddSurfaceColors(resources, scheme, dark, highContrast);
+        DelayExamplePalette.Add(resources, scheme, highContrast);
 
         var dictionaries = applicationResources.MergedDictionaries;
         if (_activeResources is null)

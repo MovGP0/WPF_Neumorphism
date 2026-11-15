@@ -30,7 +30,8 @@ internal static class GalleryCatalog
         "Snackbar",
         "Toggles",
         "ToolTips",
-        "Trees"
+        "Trees",
+        "Delay Example"
     ];
 
     public static UserControl? CreatePage(string group) => group switch
@@ -53,6 +54,7 @@ internal static class GalleryCatalog
         "Toggles" => new TogglesPage(),
         "ToolTips" => new ToolTipsPage(),
         "Trees" => new TreesPage(),
+        "Delay Example" => new DelayExamplePage(),
         _ => null
     };
 }
