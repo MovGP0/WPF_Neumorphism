@@ -55,12 +55,12 @@
                             <Border Background="{TemplateBinding Background}" CornerRadius="14" IsHitTestVisible="False">
                                 <Border.Effect>
                                     <DropShadowEffect Direction="315" ShadowDepth="5" BlurRadius="14"
-                                                      Color="{DynamicResource Neumorphism.Color.ButtonShade}"
-                                                      Opacity="{DynamicResource Neumorphism.Opacity.ButtonShade}" />
+                                                      Color="{DynamicResource Neumorphism.Color.Shade}"
+                                                      Opacity="{DynamicResource Neumorphism.Opacity.Shade}" />
                                 </Border.Effect>
                             </Border>
                             <Border Background="{TemplateBinding Background}" CornerRadius="14"
-                                    BorderBrush="{DynamicResource Neumorphism.Brush.ButtonRaisedEdge}"
+                                    BorderBrush="{DynamicResource Neumorphism.Brush.RaisedEdge}"
                                     BorderThickness="{TemplateBinding BorderThickness}" IsHitTestVisible="False" />
                             <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
                                     Padding="{TemplateBinding Padding}" CornerRadius="14">

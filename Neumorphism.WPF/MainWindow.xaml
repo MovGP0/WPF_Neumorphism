@@ -80,6 +80,7 @@
                     <TextBlock x:Name="NoResults" Grid.Row="1" Text="No control groups match your search."
                                Margin="0,16,0,0" Style="{StaticResource SupportingText}" Visibility="Collapsed" />
                     <gallery:ButtonsPage x:Name="ButtonsGallery" Grid.Row="1" Visibility="Collapsed" />
+                    <gallery:CardsPage x:Name="CardsGallery" Grid.Row="1" Visibility="Collapsed" />
                 </Grid>
 
                 <local:PaletteEditor x:Name="Palette" Visibility="Collapsed" ThemeChanged="Palette_ThemeChanged" />
