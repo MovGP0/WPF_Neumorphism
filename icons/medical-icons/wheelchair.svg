@@ -1,0 +1,10 @@
+<!-- Artwork by Iconshock. Preview from https://www.iconshock.com/material-design-icons/medical-icons/ -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="582145248_Capa_1_grid" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">
+
+<rect class="st4" width="24" height="24" style="fill:none;;"/>
+<rect x="8" y="14" class="st0" width="12" height="2" style="fill:#1976D2;;"/>
+<path id="582145248_shock_x5F_color_grid" class="stshockcolor" d="M22,10V8H8V3c0-1.21-0.8-3-3-3H2v2h3c0.81,0,0.99,0.55,1,1v15h12v6h4v-2h-2V10H22z M18,16  H8v-6h10V16z" style="fill:#78909C;;"/>
+<path class="st3" d="M4,2H2V0h2V2z M22,22h-4v2h4V22z" style="opacity:0.2;fill:#FFFFFF;;"/>
+<circle class="st2" cx="7" cy="17" r="7" style="fill:#546E7A;;"/>
+<path class="st1" d="M7,22c-2.757,0-5-2.243-5-5s2.243-5,5-5s5,2.243,5,5S9.757,22,7,22z" style="fill:#B0BEC5;;"/>
+</svg>

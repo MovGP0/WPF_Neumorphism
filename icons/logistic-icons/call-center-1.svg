@@ -1,0 +1,11 @@
+<!-- Artwork by Iconshock. Preview from https://www.iconshock.com/material-design-icons/logistic-icons/ -->
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="24px" height="24px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">
+<path style="fill:#EC407A;" d="M12,4c2.761,0,5,2.239,5,5c0,2.761-2.239,5-5,5c-2.761,0-5-2.239-5-5C7,6.239,9.239,4,12,4z"/>
+<path style="fill:#E0E0E0;" d="M12,15c-3.375,0-9,1.375-9,4.75V22h18v-2.25C21,16.375,15.375,15,12,15z"/>
+<path id="shock_x5F_color" class="stshockcolor" style="fill:#757575;" d="M20,7v4h-7V9.5h5V8.441c-0.283-3.055-2.858-5.455-5.986-5.455
+	C8.698,2.986,6,5.684,6,9v2H4V7h0.779c0.879-3.174,3.785-5.514,7.236-5.514c3.45,0,6.357,2.34,7.236,5.514H20z M12,15
+	c-1.387,0-3.147,0.241-4.746,0.75C7.791,17.145,9.228,20,12,20c2.775,0,4.212-2.86,4.747-4.253C15.148,15.239,13.386,15,12,15z"/>
+<path style="fill:#EC407A;" d="M12,15c-0.593,0-1.257,0.048-1.945,0.137L12,20l1.946-4.864C13.257,15.048,12.593,15,12,15z"/>
+<path style="opacity:0.4;" d="M6,11H4V7h2V11z M20,11h-2V7h2V11z M17,9.5h-4V11h3.583C16.816,10.54,16.939,10.034,17,9.5z"/>
+</svg>

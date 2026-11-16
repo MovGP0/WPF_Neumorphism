@@ -1,0 +1,12 @@
+<!-- Artwork by Iconshock. Preview from https://www.iconshock.com/material-design-icons/people-icons/ -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="581679080_Capa_1_grid" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">
+
+<rect class="st4" width="24" height="24" style="fill:none;;"/>
+<path class="st5" d="M22,17v3H6v-3c0-1.91,1.36-3.13,3-3.89c0.42-0.2,0.87-0.36,1.31-0.5C11.75,12.16,13.2,12,14,12  s2.25,0.16,3.69,0.61c0.439,0.14,0.89,0.3,1.31,0.5C20.64,13.87,22,15.09,22,17z" style="fill:#37474F;;"/>
+<circle id="581679080_581641581_shock_x5F_color_4__grid" class="stshockcolor" cx="14" cy="5" r="5" style="fill:#EC407A;;"/>
+<path class="st2" d="M17.69,12.61L14,20l-3.69-7.39C11.75,12.16,13.2,12,14,12S16.25,12.16,17.69,12.61z M19,13.11V20h3v-3  C22,15.09,20.64,13.87,19,13.11z M9,13.11V20H6v-3C6,15.09,7.36,13.87,9,13.11z" style="opacity:0.8;fill:#FFFFFF;;"/>
+<path class="st3" d="M18,12v2c0,0,0,1-1,1c-0.5,0-1.26-0.51-1.89-1.01C14.85,14.3,14.45,14.5,14,14.5s-0.85-0.2-1.109-0.51  C12.26,14.49,11.5,15,11,15c-1,0-1-1-1-1v-2c0,0,0-1,1-1c0.5,0,1.26,0.51,1.891,1.01C13.15,11.7,13.55,11.5,14,11.5  s0.85,0.2,1.11,0.51C15.74,11.51,16.5,11,17,11C18,11,18,12,18,12z M15,16c0-0.553-0.447-1-1-1s-1,0.447-1,1s0.447,1,1,1  S15,16.553,15,16z" style="fill:#263238;;"/>
+<rect y="22" class="st3" width="9" height="2" style="fill:#263238;;"/>
+<path class="st6" d="M5,18v3h1.5C6.78,21,7,21.22,7,21.5S6.78,22,6.5,22h-4C2.22,22,2,21.78,2,21.5S2.22,21,2.5,21H4v-3l-2.4-3L0,13  h9l-1.6,2L5,18z" style="fill:#D81B60;;"/>
+<path class="st1" d="M7,21.5C7,21.78,6.78,22,6.5,22h-4C2.22,22,2,21.78,2,21.5S2.22,21,2.5,21H4v-3h1v3h1.5C6.78,21,7,21.22,7,21.5  z M0,13l1.6,2h5.8L9,13H0z" style="opacity:0.15;fill:#FFFFFF;;"/>
+</svg>

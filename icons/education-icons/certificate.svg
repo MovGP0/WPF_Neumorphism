@@ -1,0 +1,13 @@
+<!-- Artwork by Iconshock. Preview from https://www.iconshock.com/material-design-icons/education-icons/ -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">
+
+<rect class="st4" width="24" height="24" style="fill:none;;"/>
+<path id="581045048_shock_x5F_color" class="stshockcolor" d="M22,6.38v10.24c0,1.32-1.06,2.38-2.38,2.38H4.38C3.06,19,2,17.94,2,16.62V6.38  C2,5.06,3.06,4,4.38,4h15.24C20.94,4,22,5.06,22,6.38z" style="fill:#546E7A;;"/>
+<path class="st0" d="M19.62,4H4.38C3.06,4,2,5.06,2,6.38v10.24C2,17.94,3.06,19,4.38,19h15.24c1.32,0,2.38-1.06,2.38-2.38V6.38  C22,5.06,20.94,4,19.62,4z M15,12H7c-0.55,0-1-0.45-1-1s0.45-1,1-1h8c0.55,0,1,0.45,1,1S15.55,12,15,12z M19,8H5C4.45,8,4,7.55,4,7  s0.45-1,1-1h14c0.55,0,1,0.45,1,1S19.55,8,19,8z" style="opacity:0.6;fill:#FFFFFF;;"/>
+<g>
+	<polygon class="st1" points="15,14 15,21 11,23 13,14  " style="fill:#E53935;;"/>
+	<polygon class="st5" points="15,14 15,21 19,23 17,14  " style="fill:#D32F2F;;"/>
+	<circle class="st3" cx="15" cy="14" r="4" style="fill:#FFB300;;"/>
+	<circle class="st6" cx="15" cy="14" r="3" style="opacity:0.6;fill:#FFE082;enable-background:new    ;;"/>
+</g>
+</svg>

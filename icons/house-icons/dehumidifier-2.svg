@@ -1,0 +1,8 @@
+<!-- Artwork by Iconshock. Preview from https://www.iconshock.com/material-design-icons/house-icons/ -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="586891839_Capa_1_grid" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">
+
+<path class="st0" d="M18,5.5V8h4v1.5h-4V22H6V4c0-1.104,0.896-2,2-2h8c1.104,0,2,0.896,2,2h4v1.5H18z" style="fill:#BDBDBD;;"/>
+<path class="st1" d="M22,4v1.5h-7V4H22z M15,9.5h7V8h-7V9.5z" style="opacity:0.5;fill:#F5F5F5;;"/>
+<path class="st2" d="M18,18.388c-0.702-0.27-1.861-0.638-3-0.638c-0.907,0-1.836,0.232-2.818,0.478  C11.155,18.484,10.092,18.75,9,18.75c-1.104,0-2.189-0.272-3-0.544v-1.594c0.702,0.27,1.862,0.638,3,0.638  c0.908,0,1.835-0.232,2.818-0.478c1.027-0.257,2.089-0.522,3.182-0.522c1.104,0,2.19,0.272,3,0.544V18.388z" style="fill:#F5F5F5;;"/>
+<path id="586891839_shock_x5F_color_grid" class="stshockcolor" d="M15.53,12.53L12,16.06l-3.53-3.53L9.53,11.47l1.72,1.72V12c0-1.495-1.005-2.5-2.5-2.5H2V8  h6.75c0.976,0,1.828,0.312,2.5,0.83V8c0-1.495-1.005-2.5-2.5-2.5H2V4h6.75c2.318,0,4,1.682,4,4v5.189l1.72-1.72L15.53,12.53z M18,22  H6v-3.794c0.811,0.271,1.896,0.544,3,0.544c1.092,0,2.155-0.266,3.182-0.522c0.982-0.245,1.911-0.478,2.818-0.478  c1.139,0,2.298,0.367,3,0.638V22z" style="fill:#B2EBF2;;"/>
+</svg>

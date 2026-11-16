@@ -1,0 +1,12 @@
+<!-- Artwork by Iconshock. Preview from https://www.iconshock.com/material-design-icons/cyber-security-icons/ -->
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="24px" height="24px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">
+<path style="fill:#E0E0E0;" d="M12,18c-6.643,0-9.007-3.586-9.715-5.128L1.913,12l0.361-0.847C2.993,9.586,5.357,6,12,6
+	c6.645,0,9.007,3.586,9.715,5.128L22.088,12l-0.362,0.848C21.007,14.414,18.644,18,12,18z"/>
+<path id="shock_x5F_color" class="stshockcolor" style="fill:#00ACC1;" d="M12,18c-3.309,0-6-2.691-6-6s2.691-6,6-6s6,2.691,6,6S15.309,18,12,18z"/>
+<path style="fill:#BF360C;" d="M4,6H2V2h4v2H4V6z M22,2h-4v2h2v2h2V2z M6,20H4v-2H2v4h4V20z M5,11H1v2h4V11z M23,11h-4v2h4V11z
+	 M22,18h-2v2h-2v2h4V18z M13,15h-2v6h2V15z M13,3h-2v6h2V3z"/>
+<path style="opacity:0.8;" d="M14,12c0,1.103-0.897,2-2,2c-1.103,0-2-0.897-2-2c0-1.103,0.897-2,2-2C13.103,10,14,10.897,14,12z"/>
+<path style="opacity:0.4;fill:#FFFFFF;" d="M12,8c-2.206,0-4,1.794-4,4c0,2.206,1.794,4,4,4c2.206,0,4-1.794,4-4
+	C16,9.794,14.206,8,12,8z M12,14c-1.103,0-2-0.897-2-2c0-1.103,0.897-2,2-2c1.103,0,2,0.897,2,2C14,13.103,13.103,14,12,14z"/>
+</svg>

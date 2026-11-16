@@ -1,0 +1,8 @@
+<!-- Artwork by Iconshock. Preview from https://www.iconshock.com/material-design-icons/medical-icons/ -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="582145196_Capa_1_grid" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">
+
+<rect class="st1" width="24" height="24" style="fill:none;;"/>
+<rect x="8" y="14" class="st3" width="5" height="2" style="fill:#42A5F5;;"/>
+<path id="582145196_shock_x5F_color_grid" class="stshockcolor" d="M20,12c0,0.83-0.51,1.54-1.23,1.84C17.91,17.08,14.78,18,13,18v2h5v2H6v-2h5v-2H6v-2h7  c0.34,0,2.94-0.11,3.75-2.44C16.29,13.19,16,12.63,16,12s0.3-1.2,0.76-1.56C15.9,8.04,13.14,8,13,8v2h-1v2H9v-2H8V4h1V2h3v2h1v2  c1.78,0,4.91,0.92,5.77,4.16C19.49,10.46,20,11.17,20,12z" style="fill:#546E7A;;"/>
+<path class="st2" d="M12,4H9V2h3V4z M20,12c0-1.104-0.896-2-2-2s-2,0.896-2,2s0.896,2,2,2S20,13.104,20,12z M13,8H8v2h5V8z M13,20  v-2h-2v2H6v2h12v-2H13z" style="opacity:0.4;fill:#FFFFFF;;"/>
+</svg>

@@ -1,0 +1,12 @@
+<!-- Artwork by Iconshock. Preview from https://www.iconshock.com/material-design-icons/video-icons/ -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="582845420_Capa_1_grid" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">
+
+<rect class="st2" width="24" height="24" style="fill:none;;"/>
+<rect id="582845420_shock_x5F_color_grid" x="2" y="5" class="stshockcolor" width="13" height="14" style="fill:#5E35B1;;"/>
+<path class="st3" d="M2,9h13v6H2V9z M2,16h2v2H2V16z M6,16h2v2H6V16z M2,6h2v2H2V6z M6,6h2v2H6V6z" style="opacity:0.4;fill:#FFFFFF;;"/>
+<g id="582845420_cd_grid">
+	<path class="st0" d="M22,12c0,3.87-3.13,7-7,7c-1.94,0-3.68-0.78-4.95-2.05C8.78,15.68,8,13.94,8,12c0-3.87,3.13-7,7-7   c1.94,0,3.68,0.78,4.95,2.05C21.22,8.32,22,10.06,22,12z" style="fill:#B0BEC5;;"/>
+	<path class="st3" d="M19.95,7.05l-9.9,9.9C8.78,15.68,8,13.94,8,12c0-3.87,3.13-7,7-7C16.94,5,18.68,5.78,19.95,7.05z" style="opacity:0.4;fill:#FFFFFF;;"/>
+	<circle class="st4" cx="15" cy="12" r="2" style="fill:#78909C;;"/>
+</g>
+</svg>

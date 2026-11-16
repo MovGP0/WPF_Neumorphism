@@ -1,0 +1,13 @@
+<!-- Artwork by Iconshock. Preview from https://www.iconshock.com/material-design-icons/education-icons/ -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">
+
+<rect class="st3" width="24" height="24" style="fill:none;;"/>
+<path id="581045131_shock_x5F_color" class="stshockcolor" d="M22,4.38v10.24c0,1.32-1.06,2.38-2.38,2.38H4.38C3.06,17,2,15.94,2,14.62V4.38  C2,3.06,3.06,2,4.38,2h15.24C20.94,2,22,3.06,22,4.38z" style="fill:#1E88E5;;"/>
+<path class="st0" d="M19.62,2H4.38C3.06,2,2,3.06,2,4.38v10.24C2,15.94,3.06,17,4.38,17h15.24c1.32,0,2.38-1.06,2.38-2.38V4.38  C22,3.06,20.94,2,19.62,2z M10,7H6v1h3c0.55,0,1,0.45,1,1v3c0,0.55-0.45,1-1,1H8v1H6v-1H4v-2h4v-1H5c-0.55,0-1-0.45-1-1V6  c0-0.55,0.45-1,1-1h1V4h2v1h2V7z M20,7h-8V5h8V7z" style="opacity:0.6;fill:#FFFFFF;;"/>
+<g>
+	<polygon class="st5" points="16,13 16,20 12,22 14,13  " style="fill:#42A5F5;;"/>
+	<polygon class="stshockcolor" points="16,13 16,20 20,22 18,13  " style="fill:#1E88E5;;"/>
+	<circle class="st2" cx="16" cy="13" r="4" style="fill:#FFB300;;"/>
+	<circle class="st4" cx="16" cy="13" r="3" style="opacity:0.6;fill:#FFE082;enable-background:new    ;;"/>
+</g>
+</svg>

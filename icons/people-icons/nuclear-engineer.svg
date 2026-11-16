@@ -1,0 +1,14 @@
+<!-- Artwork by Iconshock. Preview from https://www.iconshock.com/material-design-icons/people-icons/ -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="581679021_Capa_1_grid" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">
+
+<rect class="st6" width="24" height="24" style="fill:none;;"/>
+<circle id="581679021_581641523_shock_x5F_color_grid" class="stshockcolor" cx="14" cy="7" r="5" style="fill:#1E88E5;;"/>
+<path class="st7" d="M19,5H9c0-2.05,1.24-3.81,3-4.59C12.61,0.15,13.29,0,14,0s1.39,0.15,2,0.41C17.76,1.19,19,2.95,19,5z" style="fill:#CFD8DC;;"/>
+<path class="st0" d="M20,5v2H8V5h4V0.41C12.61,0.15,13.29,0,14,0s1.39,0.15,2,0.41V5H20z" style="fill:#B0BEC5;;"/>
+<path class="st4" d="M24,19v2H4v-2c0,0,0-5,6.5-5L10,11h8l-0.5,3C24.008,14,24,19,24,19z" style="fill:#FBC02D;;"/>
+<path class="st2" d="M4,21v-2c0,0,0-5,6.5-5L10,11h4v10H4z" style="opacity:0.2;fill:#F4F4F4;;"/>
+<g>
+	<circle class="st3" cx="6" cy="18" r="6" style="fill:#263238;;"/>
+	<path class="st5" d="M8.5,18c0-0.93-0.51-1.74-1.26-2.17l1.24-2.17C7.75,13.24,6.9,13,6,13s-1.75,0.24-2.48,0.66l1.24,2.17   C4.01,16.26,3.5,17.07,3.5,18H1c0,1.86,1.01,3.48,2.52,4.34l1.24-2.17C5.12,20.38,5.55,20.5,6,20.5s0.88-0.12,1.24-0.33l1.24,2.17   C9.99,21.48,11,19.86,11,18H8.5z M6,19.5c-0.83,0-1.5-0.67-1.5-1.5s0.67-1.5,1.5-1.5s1.5,0.67,1.5,1.5S6.83,19.5,6,19.5z" style="fill:#FDD835;;"/>
+</g>
+</svg>

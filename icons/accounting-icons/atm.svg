@@ -1,0 +1,9 @@
+<!-- Artwork by Iconshock. Preview from https://www.iconshock.com/material-design-icons/accounting-icons/ -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="58244392_Capa_1_grid" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">
+
+<rect class="st4" width="24" height="24" style="fill:none;;"/>
+<path id="58244392_shock_x5F_color_grid" class="stshockcolor" d="M22,4c0-1.104-0.896-2-2-2H4C2.896,2,2,2.896,2,4v14c0,1.104,0.896,2,2,2h16  c1.104,0,2-0.896,2-2V4z" style="fill:#90A4AE;;"/>
+<rect x="4" y="16" class="st3" width="12" height="2" style="opacity:0.5;fill:#37474F;;"/>
+<path class="st0" d="M4,4h12v10H4V4z M20,6h-2V4h2V6z M20,8h-2v2h2V8z M20,12h-2v2h2V12z" style="opacity:0.6;fill:#FFFFFF;;"/>
+<path class="st1" d="M5,18h10v4H5V18z M10.333,8.421C9.345,8.28,9,7.905,9,7.542c0-0.475,0.458-0.875,1-0.875s1,0.4,1,0.875h2  c0-0.886-0.839-1.634-2-1.917V5H9v0.625c-1.161,0.282-2,1.03-2,1.917c0,1.595,1.885,1.927,2.667,2.037  C10.655,9.72,11,10.095,11,10.458c0,0.474-0.458,0.876-1,0.876s-1-0.402-1-0.876H7c0,0.886,0.839,1.634,2,1.917v0.626h2v-0.626  c1.161-0.282,2-1.03,2-1.917C13,8.863,11.115,8.531,10.333,8.421z" style="fill:#26C6DA;;"/>
+</svg>

@@ -1,0 +1,12 @@
+<!-- Artwork by Iconshock. Preview from https://www.iconshock.com/material-design-icons/people-icons/ -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="581679041_Capa_1_grid" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">
+
+<rect class="st5" width="24" height="24" style="fill:none;;"/>
+<path class="st1" d="M24,21v3H8v-3c0-1.91,1.37-3.141,3.029-3.9c0.681-0.318,1.41-0.55,2.112-0.72C14.279,16.1,15.35,16,16,16  s1.721,0.1,2.859,0.38c0.699,0.17,1.431,0.399,2.109,0.72C22.63,17.859,24,19.09,24,21z M11,7l-1-2l1-2h10l1,2l-1,2H11z" style="fill:#1565C0;;"/>
+<path class="st7" d="M20,20h-1.5l0.5,2l-3,2l-3-2l0.5-2H12l-0.971-2.9c0.681-0.318,1.41-0.55,2.112-0.72L16,22l2.859-5.62  c0.699,0.17,1.431,0.399,2.109,0.72L20,20z" style="opacity:0.4;fill:#263238;enable-background:new    ;;"/>
+<path class="st0" d="M18.859,16.38L16,22l-2.859-5.62C14.279,16.1,15.35,16,16,16S17.721,16.1,18.859,16.38z" style="opacity:0.8;fill:#FFFFFF;enable-background:new    ;;"/>
+<path id="581679041_581641543_shock_x5F_color_grid" class="stshockcolor" d="M21,9c0,2.76-2.24,5-5,5s-5-2.24-5-5H21z" style="fill:#EC407A;;"/>
+<path class="st3" d="M21,9c0,0-1,2-5,2s-5-2-5-2H21z" style="fill:#263238;;"/>
+<path class="st4" d="M11,7h10v2H11V7z M18.225,4.947l-0.447-0.895L16,4.941l-1.775-0.888l-0.447,0.895L16,6.059L18.225,4.947z" style="fill:#FFB300;;"/>
+<path class="st6" d="M10,8V6.5L6,4V1c0-0.438-0.563-1-1-1S4,0.563,4,1v3L0,6.5V8l4-1.475V9.5l-1,1V12l2-1l2,1v-1.5l-1-1V6.525L10,8z  " style="fill:#303F9F;;"/>
+</svg>

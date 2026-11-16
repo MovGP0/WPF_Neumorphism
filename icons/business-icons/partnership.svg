@@ -1,0 +1,9 @@
+<!-- Artwork by Iconshock. Preview from https://www.iconshock.com/material-design-icons/business-icons/ -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">
+
+<rect class="st4" width="24" height="24" style="fill:none;;"/>
+<rect x="2" y="14" class="st1" width="20" height="10" style="fill:#546E7A;;"/>
+<path class="st2" d="M6,18H4v-2h2V18z M10,16H8v2h2V16z M16,16h-2v2h2V16z M20,16h-2v2h2V16z M6,22H4v-2h2V22z M10,20H8v2h2V20z   M16,20h-2v2h2V20z M20,20h-2v2h2V20z" style="opacity:0.8;fill:#FFFFFF;;"/>
+<path id="58844812_shock_x5F_color" class="stshockcolor" d="M7,9c1.383,0,2.491-1.116,2.491-2.5S8.383,4,7,4S4.5,5.116,4.5,6.5S5.617,9,7,9z M7,9.834  c-1.666,0-5,0.832-5,2.5V14h10v-1.666C12,10.666,8.666,9.834,7,9.834z M17,9c1.383,0,2.491-1.116,2.491-2.5S18.383,4,17,4  s-2.5,1.116-2.5,2.5S15.617,9,17,9z M17,9.834c-1.666,0-5,0.832-5,2.5V14h10v-1.666C22,10.666,18.666,9.834,17,9.834z" style="fill:#1E88E5;;"/>
+<path class="st3" d="M17,9c1.383,0,2.491-1.116,2.491-2.5S18.383,4,17,4s-2.5,1.116-2.5,2.5S15.617,9,17,9z M17,9.834  c-1.666,0-5,0.832-5,2.5V24h10V12.334C22,10.666,18.666,9.834,17,9.834z" style="opacity:0.2;fill:#FFFFFF;;"/>
+</svg>

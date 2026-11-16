@@ -1,0 +1,13 @@
+<!-- Artwork by Iconshock. Preview from https://www.iconshock.com/material-design-icons/multimedia-icons/ -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="58744662_Capa_1_grid" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">
+
+<rect class="st8" width="24" height="24" style="fill:none;;"/>
+<rect x="2" y="3" class="st7" width="4" height="12" style="fill:#FFD54F;;"/>
+<rect x="10" y="3" class="st3" width="4" height="12" style="fill:#81C784;;"/>
+<rect x="18" y="3" class="st0" width="4" height="12" style="fill:#E53935;;"/>
+<rect x="10" y="15" class="st1" width="4" height="2" style="fill:#1976D2;;"/>
+<path class="st5" d="M14,3h4v12h-4V3z M6,15h4v2H6V15z" style="fill:#BA68C8;;"/>
+<path class="st2" d="M6,3h4v12H6V3z M2,15h4v2H2V15z" style="fill:#4DD0E1;;"/>
+<rect x="8" y="17" class="st4" width="4" height="4" style="fill:#ECEFF1;;"/>
+<path id="58744662_shock_x5F_color_grid" class="stshockcolor" d="M8,17v4H2v-4H8z M14,15v2h-2v4h10v-6H14z" style="fill:#263238;;"/>
+</svg>

@@ -1,0 +1,9 @@
+<!-- Artwork by Iconshock. Preview from https://www.iconshock.com/material-design-icons/house-icons/ -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="586891852_Capa_1_grid" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">
+
+<path class="st0" d="M8,11H3c-0.552,0-1-0.448-1-1c0-0.552,0.448-1,1-1h5c0.552,0,1,0.448,1,1C9,10.552,8.552,11,8,11z" style="fill:#FFCA28;;"/>
+<path class="stshockcolor" d="M4,11H3c-0.552,0-1-0.448-1-1c0-0.552,0.448-1,1-1h1V11z" style="fill:#BDBDBD;;"/>
+<path id="586891852_shock_x5F_color_grid" class="stshockcolor" d="M22,10v9H9v-5H7V7h2V5h0.5C14.477,5,22,5,22,10z" style="fill:#BDBDBD;;"/>
+<path class="st2" d="M9,14H7V7h2V14z" style="opacity:0.4;;"/>
+<path class="st3" d="M3,11c-0.552,0-1-0.448-1-1c0-0.552,0.448-1,1-1V11z" style="fill:#FF9E80;;"/>
+</svg>
